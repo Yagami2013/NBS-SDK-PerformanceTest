@@ -1,0 +1,877 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="editor.css">
+    <script src="/js/jquery-1.8.3.min.js" type='text/javascript'></script>
+    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/js/flot/excanvas.min.js"></script><![endif]-->
+    <script src="/js/jquery.flot.min.js"></script>
+    <script src="/js/jquery.flot.symbol.js"></script>
+    <script src="/js/jquery.flot.axislabels.js"></script>
+    <script src="/js/jshashtable-3.0.js"></script>
+    <script src="/js/jquery.numberformatter-1.2.3.min.js"></script>
+    <script src="/js/csv.js"></script>
+    <script src="js/d3.min.js"></script>
+    <script>
+
+        d3.csv("/data/nosdk-oschina.csv", function (data) {
+
+            fillData(data);
+        });
+
+        function fillData(data) {
+
+            var stepSize = 1;
+            var stepCount = Math.ceil(100 / stepSize); //向上取整;
+            var result = Array(); //统计CPU使用%比的频率;
+
+            for (var i = 0; i < stepCount; i++) {
+                result[i] = 0; //初始所有数据为 0;
+
+            }
+
+//cpu memory 制表
+            var cpu_avg=0;//cpu 均值
+            var cpu_max=0;//cpu 最大值
+            var cpu_min=0;//cpu 最小值
+            var cpu_mid;//cpu 中位数
+            var cpu_sd;//cpu 标准差
+
+            var mem_avg=0;//memory均值
+            var mem_max=0;
+            var mem_min=0;
+            var mem_mid;
+            var mem_sd;
+
+            var length=data.length;
+            var cpu = Array();
+            var mem = Array();
+            for (var i = 0; i < length; i++) {
+                cpu[i] = parseFloat(data[i]['% User Load']);
+                mem[i] = parseFloat(data[i]['Physical Memory Active']);
+
+                //求cpu最大、最小值
+               if (cpu_max <= cpu[i])
+                {
+                    cpu_max = cpu[i];
+                }
+                if (cpu_min >= cpu[i])
+                {
+                    cpu_min = cpu[i];
+                }
+
+                //求memory最大最小值
+                if (mem_max <= mem[i])
+                {
+                    mem_max = mem[i];
+                }
+                if (mem_min >= mem[i])
+                {
+                    mem_min = mem[i];
+                }
+
+                cpu_avg += cpu[i];
+
+                mem_avg = (mem_avg*i+mem[i])/(i+1);//由于内存数值较大，其均值算法与cpu略有不同
+
+                var steps = Math.ceil(cpu[i] / stepSize);
+                result[steps]++;
+            }
+
+            //cpu均值、中位数
+            cpu_avg = cpu_avg/length;
+            cpu_mid = (cpu_max-cpu_min)/2;
+
+            //memory中位数
+            mem_mid = (mem_max-mem_min)/2;
+
+
+            //求cpu标准差
+            var cpusum=0;
+            for(var i= 0;i < length;i++){
+                cpusum += (cpu[i]-cpu_avg)*(cpu[i]-cpu_avg);
+            }
+            cpu_sd = Math.sqrt(cpusum/length);
+
+
+            //求memory标准差
+            var sum=0;
+            for(var i= 0;i < length;i++){
+                sum += (mem[i]-mem_avg)*(mem[i]-mem_avg);
+            }
+            mem_sd = Math.sqrt(sum/length);
+
+
+            document.getElementById("noSdkCpuAvg").innerHTML=cpu_avg;
+            document.getElementById("noSdkCpuMid").innerHTML=cpu_mid;
+            document.getElementById("noSdkCpuSD").innerHTML=cpu_sd;
+
+            document.getElementById("noSdkMemAvg").innerHTML=mem_avg;
+            document.getElementById("noSdkMemMid").innerHTML=mem_mid;
+            document.getElementById("noSdkMemSD").innerHTML=mem_sd;
+
+//绘图
+            var cpu_count = Array();
+            for (var i = 0; i < result.length; i++) {
+                cpu_count[i] = [i * stepSize, result[i]]; //转换成 x,y的格式;
+            }
+
+/*
+            var mem_stepSize = (mem_max-mem_min)/100;
+            var mem_stepCount = Math.ceil(100 / mem_stepSize); //向上取整;
+            var mem_result = Array(); //统计Memory使用的频率;
+
+            for (var i = 0; i < mem_stepCount; i++) {
+                mem_result[i] = 0; //初始所有数据为 0;
+            }
+            for(var i=0;i < mem.length;i++){
+                var steps = Math.ceil(mem[i] / mem_stepSize);
+                mem_result[steps]++;
+            }
+
+            var mem_count = Array();
+            for (var i = 0; i < mem_result.length; i++) {
+                mem_count[i] = [i * mem_stepSize, mem_result[i]]; //转换成 x,y的格式;
+            }
+            */
+            var mem_count = Array();
+            for (var i = 0; i < length; i++) {
+                mem_count[i] = [i, mem[i]/Math.pow(10,6)]; //转换成 x,y的格式;
+            }
+
+/*            var sumResult = Array(); //统计CPU使用率平均变化;
+            for (var i = 0; i < stepCount; i++) {
+                sumResult[i] = 0;
+            }
+
+            var avgStepSize = data.length / stepCount;
+            for (var i = 0; i < data.length; i++) {
+                var cpu = parseFloat(data[i]['% User Load']);
+                var steps = Math.ceil(i / avgStepSize);
+                sumResult[steps] += cpu;
+            }
+            var avgResultData = Array();
+            for (var i = 0; i < sumResult.length; i++) {
+                avgResultData[i] = [i * stepSize, sumResult[i] / avgStepSize]; //转换成 x,y的格式;
+            }
+*/
+            var dataset = [
+            { label: "noSDK", data: cpu_count, color: "#0077FF" },
+             //      { label: "SDK1.0", data: avgResultData, color: "#7D0096" },
+            //            { label: "SDK2.0", data: data3, color: "#DE000F" }
+
+        ];
+            var data_mem = [
+                { label: "noSDK", data: mem_count, color: "#0077FF" }
+            ]
+
+
+            var options1 = {
+                series: {
+                    lines: {
+                        show: true
+                    },
+                    points: {
+                        radius: 2,
+                        fill: true,
+                        show: true
+                    }
+                },
+                xaxis: {
+
+                    axisLabel: "CPU性能对比图",
+                    axisLabelUseCanvas: true,
+                    axisLabelFontSizePixels: 20,
+                    axisLabelFontFamily: 'Verdana, Arial',
+                    axisLabelPadding: 10
+                },
+                yaxis: {
+                    axisLabel: "CPU(%)",
+                    axisLabelUseCanvas: true,
+                    axisLabelFontSizePixels: 12,
+                    axisLabelFontFamily: 'Verdana, Arial',
+                    axisLabelPadding: 3,
+                    tickFormatter: function (v, axis) {
+                        return $.formatNumber(v, { format: "#,###", locale: "us" });
+                    }
+                },
+                legend: {
+                    noColumns: 0,
+                    labelBoxBorderColor: "#000000",
+                    position: "nw"
+                },
+                grid: {
+                    hoverable: true,
+                    borderWidth: 2,
+                    borderColor: "#633200",
+                    backgroundColor: { colors: ["#ffffff", "#EDF5FF"] }
+                },
+                colors: ["#FF0000", "#0022FF", "00224f"]
+            };
+            //options1 = {};
+            var options2 = {
+                series: {
+                    lines: {
+                        show: true
+                    },
+                    points: {
+                        radius: 1,
+                        fill: true,
+                        show: true
+                    }
+                },
+                xaxis: {
+
+                    tickLength: 0,
+                    axisLabel: "Memory性能对比图",
+                    axisLabelUseCanvas: true,
+                    axisLabelFontSizePixels: 20,
+                    axisLabelFontFamily: 'Verdana, Arial',
+                    axisLabelPadding: 10
+                },
+                yaxis: {
+                    axisLabel: "Memory(Mb)",
+                    axisLabelUseCanvas: true,
+                    axisLabelFontSizePixels: 12,
+                    axisLabelFontFamily: 'Verdana, Arial',
+                    axisLabelPadding: 3,
+                    tickFormatter: function (v, axis) {
+                        return $.formatNumber(v, { format: "#,###", locale: "us" });
+                    }
+                },
+                legend: {
+                    noColumns: 0,
+                    labelBoxBorderColor: "#000000",
+                    position: "nw"
+                },
+                grid: {
+                    hoverable: true,
+                    borderWidth: 2,
+                    borderColor: "#633200",
+                    backgroundColor: { colors: ["#ffffff", "#EDF5FF"] }
+                },
+                colors: ["#FF0000", "#0022FF", "00224f"]
+            };
+
+            $(document).ready(function () {
+                $.plot($("#flot-placeholder1"), dataset, options1);
+                $("#flot-placeholder1").UseTooltip();
+                $.plot($("#flot-placeholder2"), data_mem, options2);
+                $("#flot-placeholder2").UseTooltip();
+
+            });
+        }
+            ///////////////////////
+            //处理sdk 1.0 cpu、memory数据
+            ///////////////////////
+            d3.csv("/data/sdk-oschina.csv", function (data) {
+
+                fillData10(data);
+            });
+
+            function fillData10(data) {
+
+                var stepSize = 1;
+                var stepCount = Math.ceil(100 / stepSize); //向上取整;
+                var result = Array(); //统计CPU使用%比的频率;
+
+                for (var i = 0; i < stepCount; i++) {
+                    result[i] = 0; //初始所有数据为 0;
+
+                }
+
+//cpu memory 制表
+                var cpu_avg=0;//cpu 均值
+                var cpu_max=0;//cpu 最大值
+                var cpu_min=0;//cpu 最小值
+                var cpu_mid;//cpu 中位数
+                var cpu_sd;//cpu 标准差
+
+                var mem_avg=0;//memory均值
+                var mem_max=0;
+                var mem_min=0;
+                var mem_mid;
+                var mem_sd;
+
+                var length=data.length;
+                var cpu = Array();
+                var mem = Array();
+                for (var i = 0; i < length; i++) {
+                    cpu[i] = parseFloat(data[i]['% User Load']);
+                    mem[i] = parseFloat(data[i]['Physical Memory Active']);
+
+                    //求cpu最大、最小值
+                    if (cpu_max <= cpu[i])
+                    {
+                        cpu_max = cpu[i];
+                    }
+                    if (cpu_min >= cpu[i])
+                    {
+                        cpu_min = cpu[i];
+                    }
+
+                    //求memory最大最小值
+                    if (mem_max <= mem[i])
+                    {
+                        mem_max = mem[i];
+                    }
+                    if (mem_min >= mem[i])
+                    {
+                        mem_min = mem[i];
+                    }
+
+                    cpu_avg += cpu[i];
+
+                    mem_avg = (mem_avg*i+mem[i])/(i+1);//由于内存数值较大，其均值算法与cpu略有不同
+
+                    var steps = Math.ceil(cpu[i] / stepSize);
+                    result[steps]++;
+                }
+
+                //cpu均值、中位数
+                cpu_avg = cpu_avg/length;
+                cpu_mid = (cpu_max-cpu_min)/2;
+
+                //memory中位数
+                mem_mid = (mem_max-mem_min)/2;
+
+
+                //求cpu标准差
+                var cpusum=0;
+                for(var i= 0;i < length;i++){
+                    cpusum += (cpu[i]-cpu_avg)*(cpu[i]-cpu_avg);
+                }
+                cpu_sd = Math.sqrt(cpusum/length);
+
+
+                //求memory标准差
+                var sum=0;
+                for(var i= 0;i < length;i++){
+                    sum += (mem[i]-mem_avg)*(mem[i]-mem_avg);
+                }
+                mem_sd = Math.sqrt(sum/length);
+
+
+                document.getElementById("sdk10CpuAvg").innerHTML=cpu_avg;
+                document.getElementById("sdk10CpuMid").innerHTML=cpu_mid;
+                document.getElementById("sdk10CpuSD").innerHTML=cpu_sd;
+                                         
+                document.getElementById("sdk10MemAvg").innerHTML=mem_avg;
+                document.getElementById("sdk10MemMid").innerHTML=mem_mid;
+                document.getElementById("sdk10MemSD").innerHTML=mem_sd;
+
+//绘图
+                var cpu_count = Array();
+                for (var i = 0; i < result.length; i++) {
+                    cpu_count[i] = [i * stepSize, result[i]]; //转换成 x,y的格式;
+                }
+
+                var mem_count = Array();
+                for (var i = 0; i < length; i++) {
+                    mem_count[i] = [i, mem[i]/Math.pow(10,6)]; //转换成 x,y的格式;
+                }
+
+                var dataset = [
+                    { label: "SDK 1.0", data: cpu_count, color: "#7D0096" },
+                    //      { label: "SDK1.0", data: avgResultData, color: "#0077FF"},
+                    //            { label: "SDK2.0", data: data3, color: "#DE000F" }
+
+                ];
+                var data_mem = [
+                    { label: "SDK 1.0", data: mem_count, color: "#7D0096" }
+                ]
+
+
+                var options1 = {
+                    series: {
+                        lines: {
+                            show: true
+                        },
+                        points: {
+                            radius: 2,
+                            fill: true,
+                            show: true
+                        }
+                    },
+                    xaxis: {
+
+                        axisLabel: "CPU性能对比图",
+                        axisLabelUseCanvas: true,
+                        axisLabelFontSizePixels: 20,
+                        axisLabelFontFamily: 'Verdana, Arial',
+                        axisLabelPadding: 10
+                    },
+                    yaxis: {
+                        axisLabel: "CPU(%)",
+                        axisLabelUseCanvas: true,
+                        axisLabelFontSizePixels: 12,
+                        axisLabelFontFamily: 'Verdana, Arial',
+                        axisLabelPadding: 3,
+                        tickFormatter: function (v, axis) {
+                            return $.formatNumber(v, { format: "#,###", locale: "us" });
+                        }
+                    },
+                    legend: {
+                        noColumns: 0,
+                        labelBoxBorderColor: "#000000",
+                        position: "nw"
+                    },
+                    grid: {
+                        hoverable: true,
+                        borderWidth: 2,
+                        borderColor: "#633200",
+                        backgroundColor: { colors: ["#ffffff", "#EDF5FF"] }
+                    },
+                    colors: ["#FF0000", "#0022FF", "00224f"]
+                };
+                //options1 = {};
+                var options2 = {
+                    series: {
+                        lines: {
+                            show: true
+                        },
+                        points: {
+                            radius: 1,
+                            fill: true,
+                            show: true
+                        }
+                    },
+                    xaxis: {
+
+                        tickLength: 0,
+                        axisLabel: "Memory性能对比图",
+                        axisLabelUseCanvas: true,
+                        axisLabelFontSizePixels: 20,
+                        axisLabelFontFamily: 'Verdana, Arial',
+                        axisLabelPadding: 10
+                    },
+                    yaxis: {
+                        axisLabel: "Memory(Mb)",
+                        axisLabelUseCanvas: true,
+                        axisLabelFontSizePixels: 12,
+                        axisLabelFontFamily: 'Verdana, Arial',
+                        axisLabelPadding: 3,
+                        tickFormatter: function (v, axis) {
+                            return $.formatNumber(v, { format: "#,###", locale: "us" });
+                        }
+                    },
+                    legend: {
+                        noColumns: 0,
+                        labelBoxBorderColor: "#000000",
+                        position: "nw"
+                    },
+                    grid: {
+                        hoverable: true,
+                        borderWidth: 2,
+                        borderColor: "#633200",
+                        backgroundColor: { colors: ["#ffffff", "#EDF5FF"] }
+                    },
+                    colors: ["#FF0000", "#0022FF", "00224f"]
+                };
+
+                $(document).ready(function () {
+                    $.plot($("#flot-placeholder5"), dataset, options1);
+                    $("#flot-placeholder1").UseTooltip();
+                    $.plot($("#flot-placeholder6"), data_mem, options2);
+                    $("#flot-placeholder2").UseTooltip();
+
+                });
+
+            //////////////////////
+            //sdk 1.0 cpu、memory处理结束
+            //////////////////////
+
+        }
+        d3.csv("/data/performanceData.csv", function (data) {
+
+            fillDataDuration(data);
+        });
+
+        function fillDataDuration(data) {
+
+            var stepSize = 1;
+            var stepCount = Math.ceil(100 / stepSize); //向上取整;
+            var result_noSdk = Array(); //统计durarion出现频率;
+            var result_sdk = Array();
+
+            for (var i = 0; i < stepCount; i++) {
+                result_noSdk[i] = 0; //初始所有数据为 0;
+                result_sdk[i] = 0;
+            }
+//制表
+            var time_avg = 0;//time 均值
+            var time_max = 0;//time 最大值
+            var time_min = 0;//time 最小值
+            var time_mid;//time 中位数
+            var time_sd;//time 标准差
+
+            var time10_avg = 0;//time 均值
+            var time10_max = 0;//time 最大值
+            var time10_min = 0;//time 最小值
+            var time10_mid;//time 中位数
+            var time10_sd;//time 标准差
+
+
+            var length = data.length;
+            var durNoSdk = Array();
+            var durSdk = Array();
+
+            var timeCountNoSdk = Array();
+            var timeCountSdk = Array();
+
+            for (var i = 0; i < length; i++) {
+                durNoSdk[i] = parseFloat(data[i]['time_noSDK']);
+                durSdk[i] = parseFloat(data[i]['time_SDK']);
+
+                //求duration no sdk最大、最小值
+                if (time_max <= durNoSdk[i])
+                {
+                    time_max = durNoSdk[i];
+                }
+                if (time_min >= durNoSdk[i])
+                {
+                    time_min = durNoSdk[i];
+                }
+
+                //求duration sdk 1.0最大最小值
+                if (time10_max <= durSdk[i])
+                {
+                    time10_max = durSdk[i];
+                }
+                if (time10_min >= durSdk[i])
+                {
+                    time10_min = durSdk[i];
+                }
+
+                time_avg += durNoSdk[i];
+                time10_avg += durSdk[i];
+
+//统计duration分布
+                if(durNoSdk[i]>200){
+                    console.log(durNoSdk[i]);
+                }else{
+                    var step_noSdk = Math.ceil(durNoSdk[i] / stepSize);
+                    result_noSdk[step_noSdk]++;
+                }
+                if(durSdk[i]>200){
+                    console.log(durSdk[i]);
+                }
+                else{
+
+                    var step_Sdk = Math.ceil(durSdk[i] / stepSize);
+                    result_sdk[step_Sdk]++;
+                }
+/*
+                if((durNoSdk[i]!=0)&&(durSdk[i]!=0)){
+                    var step_noSdk = Math.ceil(durNoSdk[i] / stepSize);
+                    result_noSdk[step_noSdk]++;
+                    var step_Sdk = Math.ceil(durSdk[i] / stepSize);
+                    result_sdk[step_Sdk]++;
+                }*/
+
+
+            }
+
+//duration no sdk均值、中位数
+            time_avg = time_avg/length;
+            time_mid = (time_max-time_min)/2;
+
+            //duration no sdk均值、中位数
+            time10_avg = time10_avg/length;
+            time10_mid = (time10_max-time10_min)/2;
+
+            //求no sdk duration标准差
+            var timesum=0;
+            for(var i= 0;i < length;i++){
+                timesum += (durNoSdk[i]-time_avg)*(durNoSdk[i]-time_avg);
+            }
+            time_sd = Math.sqrt(timesum/length);
+
+
+            //求sdk 1.0 duration标准差
+            var sum=0;
+            for(var i= 0;i < length;i++){
+                sum += (durSdk[i]-time10_avg)*(durSdk[i]-time10_avg);
+            }
+            time10_sd = Math.sqrt(sum/length);
+
+
+            document.getElementById("noSdkDurAvg").innerHTML=time_avg;
+            document.getElementById("noSdkDurMid").innerHTML=time_mid;
+            document.getElementById("noSdkDurSD").innerHTML=time_sd;
+                                          
+            document.getElementById("sdk10DurAvg").innerHTML=time10_avg;
+            document.getElementById("sdk10DurMid").innerHTML=time10_mid;
+            document.getElementById("sdk10DurSD").innerHTML=time10_sd;
+
+            for(var i=0;i<result_noSdk.length;i++){
+                timeCountNoSdk[i] = [i,result_noSdk[i]];
+                timeCountSdk[i] = [i,result_sdk[i]];
+            }
+
+            var dataset = [
+                { label: "noSDK", data: timeCountNoSdk, color: "#0077FF" },
+                { label: "SDK1.0", data: timeCountSdk, color: "#7D0096" },
+                //            { label: "SDK2.0", data: data3, color: "#DE000F" }
+            ];
+            var dataSdk = [
+                //{ label: "noSDK", data: timeCountNoSdk, color: "#7D0096"  },
+                { label: "SDK1.0", data: timeCountSdk, color:"#0077FF" },
+                //            { label: "SDK2.0", data: data3, color: "#DE000F" }
+            ];
+
+            var options3 = {
+                series: {
+                    lines: {
+                        show: true
+                    },
+                    points: {
+                        radius: 1,
+                        fill: true,
+                        show: true
+                    }
+                },
+                xaxis: {
+                    //mode: "time",
+                    //tickSize: [1, "month"],
+                    //tickLength: 0,
+                    axisLabel: "Duration性能对比图",
+                    axisLabelUseCanvas: true,
+                    axisLabelFontSizePixels: 20,
+                    axisLabelFontFamily: 'Verdana, Arial',
+                    axisLabelPadding: 10
+                },
+                yaxis: {
+                    axisLabel: "TotalTime(ms)",
+                    axisLabelUseCanvas: true,
+                    axisLabelFontSizePixels: 12,
+                    axisLabelFontFamily: 'Verdana, Arial',
+                    axisLabelPadding: 3,
+                    tickFormatter: function (v, axis) {
+                        return $.formatNumber(v, { format: "#,###", locale: "us" });
+                    }
+                },
+                legend: {
+                    noColumns: 0,
+                    labelBoxBorderColor: "#000000",
+                    position: "nw"
+                },
+                grid: {
+                    hoverable: true,
+                    borderWidth: 2,
+                    borderColor: "#633200",
+                    backgroundColor: { colors: ["#ffffff", "#EDF5FF"] }
+                },
+                colors: ["#FF0000", "#0022FF", "00224f"]
+            };
+
+            $(document).ready(function () {
+            $.plot($("#flot-placeholder3"), dataset, options3);
+                $("#flot-placeholder3").UseTooltip();
+            //$.plot($("#flot-placeholder4"), dataSdk, options3);
+                //$("#flot-placeholder4").UseTooltip();
+            });
+        }
+
+        function gd(year, month, day) {
+            return new Date(year, month, day).getTime();
+        }
+
+        var previousPoint = null, previousLabel = null;
+        var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        $.fn.UseTooltip = function () {
+            $(this).bind("plothover", function (event, pos, item) {
+                if (item) {
+                    if ((previousLabel != item.series.label) || (previousPoint != item.dataIndex)) {
+                        previousPoint = item.dataIndex;
+                        previousLabel = item.series.label;
+                        $("#tooltip").remove();
+
+                        var x = item.datapoint[0];
+                        var y = item.datapoint[1];
+
+                        var color = item.series.color;
+                        var month = new Date(x).getMonth();
+
+                        //console.log(item);
+
+                        if (item.seriesIndex == 0) {
+                            showTooltip(item.pageX,
+                            item.pageY,
+                            color,
+                            "<strong>" + item.series.label + "</strong><br>" + monthNames[month] + " : <strong>" + y + "</strong>(USD)");
+                        } else {
+                            showTooltip(item.pageX,
+                            item.pageY,
+                            color,
+                            "<strong>" + item.series.label + "</strong><br>" + monthNames[month] + " : <strong>" + y + "</strong>(%)");
+                        }
+                    }
+                } else {
+                    $("#tooltip").remove();
+                    previousPoint = null;
+                }
+            });
+        };
+
+        function showTooltip(x, y, color, contents) {
+            $('<div id="tooltip">' + contents + '</div>').css({
+                position: 'absolute',
+                display: 'none',
+                top: y - 40,
+                left: x - 120,
+                border: '2px solid ' + color,
+                padding: '3px',
+                'font-size': '9px',
+                'border-radius': '5px',
+                'background-color': '#fff',
+                'font-family': 'Verdana, Arial, Helvetica, Tahoma, sans-serif',
+                opacity: 0.9
+            }).appendTo("body").fadeIn(200);
+        }
+    </script>
+</head>
+<body>
+    <h2 id="chartTitle">
+        听云APP IOS SDK 性能测试报告</h2>
+    <p>
+        Summary</p>
+    <table border="1">
+        <caption id="TestENV">
+            SDK-2.0.8 手机类型:iPhone 4s，操作系统版本：iOS 7.0.2
+        </caption>
+        <tr>
+            <th>
+                测试版本
+            </th>
+            <th>
+                CPU平均值（%）
+            </th>
+            <th>
+                CPU标准差
+            </th>
+            <th>
+                CPU中位数
+            </th>
+            <th>
+                Memory平均值
+            </th>
+            <th>
+                Memory标准差
+            </th>
+            <th>
+                Memory中位数
+            </th>
+            <th>
+                Duration平均值（ms）
+            </th>
+            <th>
+                Duration标准差
+            </th>
+            <th>
+                Duration中位数
+            </th>
+        </tr>
+        <tr>
+            <td>
+                未嵌码
+            </td>
+            <td id="noSdkCpuAvg"></td>
+            <td id="noSdkCpuSD"></td>
+            <td id="noSdkCpuMid"></td>
+            <td id="noSdkMemAvg"></td>
+            <td id="noSdkMemSD"></td>
+            <td id="noSdkMemMid"></td>
+            <td id="noSdkDurAvg"></td>
+            <td id="noSdkDurSD"></td>
+            <td id="noSdkDurMid"></td>
+        </tr>
+        <tr>
+            <td>
+                SDK1.0
+            </td>
+            <td id="sdk10CpuAvg"></td>
+            <td id="sdk10CpuSD"></td>
+            <td id="sdk10CpuMid"></td>
+            <td id="sdk10MemAvg"></td>
+            <td id="sdk10MemSD"></td>
+            <td id="sdk10MemMid"></td>
+            <td id="sdk10DurAvg"></td>
+            <td id="sdk10DurSD"></td>
+            <td id="sdk10DurMid"></td>
+        </tr>
+        <tr>
+            <td>
+                SDK2.0
+            </td>
+            <td id="sdk20CpuAvg"></td>
+            <td id="sdk20CpuSD"></td>
+            <td id="sdk20CpuMid"></td>
+            <td id="sdk20MemAvg"></td>
+            <td id="sdk20MemSD"></td>
+            <td id="sdk20MemMid"></td>
+            <td id="sdk20DurAvg"></td>
+            <td id="sdk20DurSD"></td>
+            <td id="sdk20DurMid"></td>
+        </tr>
+    </table>
+    <br>
+    <!--<table border="1">
+        <tr>
+            <th>嵌码与不嵌码比值</th>
+            <th>CPU百分比</th>
+            <th>Memory百分比</th>
+            <th>Duration百分比</th>
+        </tr>
+        <tr>
+            <td>SDK1.0</td>
+            <td id="cpuPer1"></td>
+            <td id="memPer1"></td>
+            <td id="durPer1"></td>
+        </tr>
+        <tr>
+            <td>SDK2.0</td>
+            <td id="cpuPer2"></td>
+            <td id="memPer2"></td>
+            <td id="durPer2"></td>
+        </tr>
+    </table>
+    -->
+    <p>
+        折线图</p>
+    <br />
+    <div style="width: 900px; height: 600px; text-align: center; margin: 10px">
+        <div id="flot-placeholder1" style="width: 100%; height: 100%;">
+        </div>
+    </div>
+    <div style="width: 900px; height: 600px; text-align: center; margin: 10px">
+        <div id="flot-placeholder5" style="width: 100%; height: 100%;">
+        </div>
+    </div>
+    <br />
+    <div style="width: 900px; height: 600px; text-align: center; margin: 10px">
+        <div id="flot-placeholder2" style="width: 100%; height: 100%;">
+        </div>
+    </div>
+    <div style="width: 900px; height: 600px; text-align: center; margin: 10px">
+        <div id="flot-placeholder6" style="width: 100%; height: 100%;">
+        </div>
+    </div>
+    <br />
+    <div style="width: 1800px; height: 600px; text-align: center; margin: 10px">
+        <div id="flot-placeholder3" style="width: 100%; height: 100%;">
+        </div>
+    </div>
+   <!-- <div style="width: 900px; height: 600px; text-align: center; margin: 10px">
+        <div id="flot-placeholder4" style="width: 100%; height: 100%;">
+        </div>
+    </div>
+-->
+    <a href="/Android.html">Android 性能测试报告</a>
+    <!--Test input data for table data-->
+    <script>
+	
+    </script>
+</body>
+</html>

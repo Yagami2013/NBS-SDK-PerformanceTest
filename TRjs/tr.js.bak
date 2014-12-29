@@ -1,0 +1,520 @@
+function parseData(data) {
+    var length = data.length;
+    var cpu = Array();
+    var memory = Array();
+    var duration = Array();
+    for (var i = 0; i < length; i++) {
+        cpu[i] = parseFloat(data[i]['Cpu']);
+        memory[i] = parseFloat(data[i]['Mem']) / 1000000;
+        duration[i] = parseFloat(data[i]['Duration']);
+    }
+    return [cpu, memory, duration]
+}
+
+function sortData(key) {
+    var avg = 0;
+    var max = 0;
+    var min = 0;
+    var mid = 0;
+    var sd = 0;
+    var length = key.length
+
+    for (var i = 0; i < length; i++) {
+
+        avg += key[i];
+        if (max <= key[i]) {
+            max = key[i];
+        }
+        if (min >= key[i]) {
+            min = key[i];
+        }
+    }
+    avg = avg / length;
+    mid = (max - min) / 2;
+
+    var sum = 0;
+    for (var i = 0; i < length; i++) {
+        sum += (key[i] - avg) * (key[i] - avg);
+    }
+    sd = Math.sqrt(sum / length);
+
+    var decimalLength = 2;
+    return [avg.toFixed(decimalLength), sd.toFixed(decimalLength), mid.toFixed(decimalLength)];
+}
+
+//classname表示类名，如HttpUrlConnection,HttpClient,OkHttp
+//index表示嵌码版本，未嵌码为0，嵌码SDK 1.0，index=1....
+function setData(classname, index) {
+    for (var i = 0; i < srcData[index].length; i++) {
+        mathData[index] = mathData[index].concat(sortData(srcData[index][i]));
+    }
+
+    for (var i = 0; i < mathData[index].length; i++) {
+        document.getElementById(classname + index + i).innerHTML = mathData[index][i];
+    }
+}
+
+function setData_HU(classname, index) {
+    for (var i = 0; i < srcData_HU[index].length; i++) {
+        mathData_HU[index] = mathData_HU[index].concat(sortData(srcData_HU[index][i]));
+    }
+
+    for (var i = 0; i < mathData_HU[index].length; i++) {
+        document.getElementById(classname + index + i).innerHTML = mathData_HU[index][i];
+    }
+}
+
+function setData_OH(classname, index) {
+    for (var i = 0; i < srcData_OH[index].length; i++) {
+        mathData_OH[index] = mathData_OH[index].concat(sortData(srcData_OH[index][i]));
+    }
+
+    for (var i = 0; i < mathData_OH[index].length; i++) {
+        document.getElementById(classname + index + i).innerHTML = mathData_OH[index][i];
+    }
+}
+
+function cloneObject(obj) {
+    var o, obj;
+    if (obj.constructor == Object) {
+        o = new obj.constructor();
+    } else {
+        o = new obj.constructor(obj.valueOf());
+    }
+    for (var key in obj) {
+        if (o[key] != obj[key]) {
+            if (typeof(obj[key]) == 'object') {
+                o[key] = cloneObject(obj[key]);
+            } else {
+                o[key] = obj[key];
+            }
+        }
+    }
+    o.toString = obj.toString;
+    o.valueOf = obj.valueOf;
+    return o;
+}
+function countMem2(mem) {
+    var mem_stepCount = 100;
+    var mem_result = Array(); //统计Memory使用的频率;
+    var mem_stepSize = mem.length / mem_stepCount;
+    for (var i = 0; i < mem_stepCount; i++) {
+        mem_result[i] = 0; //初始所有数据为 0;
+    }
+    for (var i = 0; i < mem.length; i++) {
+        var steps = Math.ceil(i / mem_stepSize);
+        mem_result[steps] += mem[i];
+    }
+
+    var mem_count = Array();
+    var avgStepSize = mem.length / mem_stepCount;
+    for (var i = 0; i < mem_result.length; i++) {
+        mem_count[i] = [i, mem_result[i] / avgStepSize]; //转换成 x,y的格式;
+    }
+    return mem_count;
+}
+
+function countDuration(duration) {
+
+    var result = Array();
+    for (var i = 0; i < duration.length; i++) {
+        result[i] = [i, duration[i]];
+    }
+    return result;
+}
+
+function countMem(mem) {
+    var mem_stepCount = 100;
+    var mem_result = Array(); //统计Memory使用的频率;
+    var mem_stepSize = mem.length / mem_stepCount;
+    for (var i = 0; i < mem_stepCount; i++) {
+        mem_result[i] = 0; //初始所有数据为 0;
+    }
+    for (var i = 0; i < mem.length; i++) {
+        var steps = Math.ceil(i / mem_stepSize);
+        mem_result[steps] += mem[i];
+    }
+
+    var mem_count = Array();
+    var avgStepSize = mem.length / mem_stepCount;
+    for (var i = 0; i < mem_result.length; i++) {
+        mem_count[i] = [i, mem_result[i] / avgStepSize]; //转换成 x,y的格式;
+    }
+    return mem_count;
+}
+
+function displayData2(data0, data1, data2){
+    var label0 = "noSDK";
+    var label1 = "SDK1.0";
+    var label2 = "SDK2.0";
+
+    var color0 = "#0077FF";
+    var color1 = "#7D0096";
+    var color2 = "#DE000F";
+
+    var resultdata0 = countCpu(data0[0]);
+    var resultdata1 = countCpu(data1[0]);
+    var resultdata2 = countCpu(data2[0]);
+
+    var cpuSet = [
+        {label: "noSDK", data: resultdata0, color: "#0077FF"},
+        {label: "SDK1.0", data: resultdata1, color: "#7D0096"},
+        {label: "SDK2.0", data: resultdata2, color: "#DE000F"}
+    ];
+
+    var memdata0 = countMem(data0[1]);
+    var memdata1 = countMem(data1[1]);
+    var memdata2 = countMem(data2[1]);
+
+    var memSet = [
+        {label: "noSDK", data: memdata0, color: "#0077FF"},
+        {label: "SDK1.0", data: memdata1, color: "#7D0096"},
+        {label: "SDK2.0", data: memdata2, color: "#DE000F"}
+    ];
+
+
+    var durations0 = countMem2(data0[2]);
+    var durations1 = countMem2(data1[2]);
+    var durations2 = countMem2(data2[2]);
+
+    var durSet = [
+        {label: "noSDK", data: durations0, color: "#0077FF"},
+        {label: "SDK1.0", data: durations1, color: "#7D0096"},
+        {label: "SDK2.0", data: durations2, color: "#DE000F"}
+    ];
+
+    var series = {
+        lines: {
+            show: true
+        },
+        points: {
+            radius: 2,
+            fill: true,
+            show: true
+        }
+    }
+
+    var xaxis = {
+
+        axisLabel: "CPU使用率(%)",
+        axisLabelUseCanvas: true,
+        axisLabelFontSizePixels: 20,
+        axisLabelFontFamily: 'Verdana, Arial',
+        axisLabelPadding: 10
+    }
+
+    var yaxis = {
+        axisLabel: "出现次数",
+        axisLabelUseCanvas: true,
+        axisLabelFontSizePixels: 20,
+        axisLabelFontFamily: 'Verdana, Arial',
+        axisLabelPadding: 3,
+        tickFormatter: function (v, axis) {
+            return $.formatNumber(v, {format: "#,###", locale: "us"});
+        }
+    }
+    var legend = {
+        noColumns: 0,
+        labelBoxBorderColor: "#000000",
+        position: "nw"
+    }
+    var colors = ["#FF0000", "#0022FF", "00224f"];
+    var grid = {
+        hoverable: true,
+        borderWidth: 2,
+        borderColor: "#633200",
+        backgroundColor: {colors: ["#ffffff", "#EDF5FF"]}
+    }
+    var options1 = {
+        series: series,
+        xaxis: xaxis,
+        yaxis: yaxis,
+        legend: legend,
+        grid: grid,
+        colors: colors
+    };
+    var options2 = cloneObject(options1);
+    options2.xaxis.axisLabel = "采样时间";
+    options2.yaxis.axisLabel = "内存使用(Mb)";
+
+    var options3 = cloneObject(options1);
+    options3.xaxis.axisLabel = "采样时间";
+    options3.yaxis.axisLabel = "响应时间(ms)";
+
+    $.plot($("#flot-placeholder1"), cpuSet, options1);
+    $("#flot-placeholder1").UseTooltip();
+    $.plot($("#flot-placeholder2"), memSet, options1);
+    $("#flot-placeholder1").UseTooltip();
+    $.plot($("#flot-placeholder3"), durSet, options1);
+    $("#flot-placeholder1").UseTooltip();
+}
+
+
+function displayData(UCD0, UCD1, UCD2, data0, data1, data2, OHD0, OHD1, OHD2) {
+
+//HttpUrlConnetion data display
+
+    var ucCpu0 = countCpu(UCD0[0]);
+    var ucCpu1 = countCpu(UCD1[0]);
+    var ucCpu2 = countCpu(UCD2[0]);
+
+    var ucCpuSet = [
+        {label: "noSDK", data: ucCpu0, color: "#0077FF"},
+        {label: "SDK1.0", data: ucCpu1, color: "#7D0096"},
+        {label: "SDK2.0", data: ucCpu2, color: "#DE000F"}
+    ];
+
+    var ucMem0 = countMem(UCD0[1]);
+    var ucMem1 = countMem(UCD1[1]);
+    var ucMem2 = countMem(UCD2[1]);
+
+    var ucMemSet = [
+        {label: "noSDK", data: ucMem0, color: "#0077FF"},
+        {label: "SDK1.0", data: ucMem1, color: "#7D0096"},
+        {label: "SDK2.0", data: ucMem2, color: "#DE000F"}
+    ];
+
+
+    var ucDurations0 = countMem2(UCD0[2]);
+    var ucDurations1 = countMem2(UCD1[2]);
+    var ucDurations2 = countMem2(UCD2[2]);
+
+    var ucDurSet = [
+        {label: "noSDK", data: ucDurations0, color: "#0077FF"},
+        {label: "SDK1.0", data: ucDurations1, color: "#7D0096"},
+        {label: "SDK2.0", data: ucDurations2, color: "#DE000F"}
+    ];
+
+//HttpClient data display
+
+    var resultdata0 = countCpu(data0[0]);
+    var resultdata1 = countCpu(data1[0]);
+    var resultdata2 = countCpu(data2[0]);
+
+    var cpuSet = [
+        {label: "noSDK", data: resultdata0, color: "#0077FF"},
+        {label: "SDK1.0", data: resultdata1, color: "#7D0096"},
+        {label: "SDK2.0", data: resultdata2, color: "#DE000F"}
+    ];
+
+    var memdata0 = countMem(data0[1]);
+    var memdata1 = countMem(data1[1]);
+    var memdata2 = countMem(data2[1]);
+
+    var memSet = [
+        {label: "noSDK", data: memdata0, color: "#0077FF"},
+        {label: "SDK1.0", data: memdata1, color: "#7D0096"},
+        {label: "SDK2.0", data: memdata2, color: "#DE000F"}
+    ];
+
+
+    var durations0 = countMem2(data0[2]);
+    var durations1 = countMem2(data1[2]);
+    var durations2 = countMem2(data2[2]);
+
+    var durSet = [
+        {label: "noSDK", data: durations0, color: "#0077FF"},
+        {label: "SDK1.0", data: durations1, color: "#7D0096"},
+        {label: "SDK2.0", data: durations2, color: "#DE000F"}
+    ];
+//OkHttp data display
+
+    var OHCpu0 = countCpu(OHD0[0]);
+    var OHCpu1 = countCpu(OHD1[0]);
+    var OHCpu2 = countCpu(OHD2[0]);
+
+    var OHCpuSet = [
+        {label: "noSDK", data: OHCpu0, color: "#0077FF"},
+        {label: "SDK1.0", data: OHCpu1, color: "#7D0096"},
+        {label: "SDK2.0", data: OHCpu2, color: "#DE000F"}
+    ];
+
+    var OHMem0 = countMem(OHD0[1]);
+    var OHMem1 = countMem(OHD1[1]);
+    var OHMem2 = countMem(OHD2[1]);
+
+    var OHMemSet = [
+        {label: "noSDK", data: OHMem0, color: "#0077FF"},
+        {label: "SDK1.0", data: OHMem1, color: "#7D0096"},
+        {label: "SDK2.0", data: OHMem2, color: "#DE000F"}
+    ];
+
+
+    var OHDurations0 = countMem2(OHD0[2]);
+    var OHDurations1 = countMem2(OHD1[2]);
+    var OHDurations2 = countMem2(OHD2[2]);
+
+    var OHDurSet = [
+        {label: "noSDK", data: OHDurations0, color: "#0077FF"},
+        {label: "SDK1.0", data: OHDurations1, color: "#7D0096"},
+        {label: "SDK2.0", data: OHDurations2, color: "#DE000F"}
+    ];
+
+    var series = {
+        lines: {
+            show: true
+        },
+        points: {
+            radius: 2,
+            fill: true,
+            show: true
+        }
+    }
+
+    var xaxis = {
+
+        axisLabel: "CPU使用率(%)",
+        axisLabelUseCanvas: true,
+        axisLabelFontSizePixels: 20,
+        axisLabelFontFamily: 'Verdana, Arial',
+        axisLabelPadding: 10
+    }
+
+    var yaxis = {
+        axisLabel: "出现次数",
+        axisLabelUseCanvas: true,
+        axisLabelFontSizePixels: 20,
+        axisLabelFontFamily: 'Verdana, Arial',
+        axisLabelPadding: 3,
+        tickFormatter: function (v, axis) {
+            return $.formatNumber(v, {format: "#,###", locale: "us"});
+        }
+    }
+    var legend = {
+        noColumns: 0,
+        labelBoxBorderColor: "#000000",
+        position: "nw"
+    }
+    var colors = ["#FF0000", "#0022FF", "00224f"];
+    var grid = {
+        hoverable: true,
+        borderWidth: 2,
+        borderColor: "#633200",
+        backgroundColor: {colors: ["#ffffff", "#EDF5FF"]}
+    }
+    var options1 = {
+        series: series,
+        xaxis: xaxis,
+        yaxis: yaxis,
+        legend: legend,
+        grid: grid,
+        colors: colors
+    };
+    var options2 = cloneObject(options1);
+    options2.xaxis.axisLabel = "采样时间";
+    options2.yaxis.axisLabel = "内存使用(Mb)";
+
+    var options3 = cloneObject(options1);
+    options3.xaxis.axisLabel = "采样时间";
+    options3.yaxis.axisLabel = "响应时间(ms)";
+
+
+    $.plot($("#flot-placeholder1"), ucCpuSet, options1);
+    $("#flot-placeholder1").UseTooltip();
+    $.plot($("#flot-placeholder2"), ucMemSet, options2);
+    $("#flot-placeholder2").UseTooltip();
+    $.plot($("#flot-placeholder3"), ucDurSet, options3);
+    $("#flot-placeholder3").UseTooltip();
+
+    $.plot($("#flot-placeholder4"), cpuSet, options1);
+    $("#flot-placeholder4").UseTooltip();
+    $.plot($("#flot-placeholder5"), memSet, options2);
+    $("#flot-placeholder5").UseTooltip();
+    $.plot($("#flot-placeholder6"), durSet, options3);
+    $("#flot-placeholder6").UseTooltip();
+
+    $.plot($("#flot-placeholder7"), OHCpuSet, options1);
+    $("#flot-placeholder7").UseTooltip();
+    $.plot($("#flot-placeholder8"), OHMemSet, options2);
+    $("#flot-placeholder8").UseTooltip();
+    $.plot($("#flot-placeholder9"), OHDurSet, options3);
+    $("#flot-placeholder9").UseTooltip();
+//            $.plot($("#flot-placeholder1"), cpuSet, options1);
+//            $("#flot-placeholder1");
+//            $.plot($("#flot-placeholder2"), memSet, options2);
+//            $("#flot-placeholder2");
+//            $.plot($("#flot-placeholder3"), durSet, options3);
+//            $("#flot-placeholder3");
+
+
+}
+
+function countCpu(data) {
+
+    var stepSize = 1;
+    var stepCount = Math.ceil(100 / stepSize); //向上取整;
+    var result = Array(); //统计CPU使用%比的频率;
+
+    for (var i = 0; i < stepCount; i++) {
+        result[i] = 0; //初始所有数据为 0;
+
+    }
+
+
+    for (var i = 0; i < data.length; i++) {
+        var cpu = data[i];
+        var steps = Math.ceil(cpu / stepSize);
+        result[steps]++;
+
+    }
+
+    var myd = Array();
+    for (var i = 0; i < result.length; i++) {
+        myd[i] = [i * stepSize, result[i]]; //转换成 x,y的格式;
+    }
+
+    return myd;
+}
+
+function showTooltip(x, y, color, contents) {
+    $('<div id="tooltip">' + contents + '</div>').css({
+        position: 'absolute',
+        display: 'none',
+        top: y - 40,
+        left: x - 120,
+        border: '2px solid ' + color,
+        padding: '3px',
+        'font-size': '9px',
+        'border-radius': '5px',
+        'background-color': '#fff',
+        'font-family': 'Verdana, Arial, Helvetica, Tahoma, sans-serif',
+        opacity: 0.9
+    }).appendTo("body").fadeIn(200);
+}
+
+
+$.fn.UseTooltip = function () {
+    $(this).bind("plothover", function (event, pos, item) {
+        if (item) {
+            if ((previousLabel != item.series.label) || (previousPoint != item.dataIndex)) {
+                previousPoint = item.dataIndex;
+                previousLabel = item.series.label;
+                $("#tooltip").remove();
+
+                var x = item.datapoint[0];
+                var y = item.datapoint[1];
+
+                var color = item.series.color;
+                var month = new Date(x).getMonth();
+
+                //console.log(item);
+
+                if (item.seriesIndex == 0) {
+                    showTooltip(item.pageX,
+                        item.pageY,
+                        color,
+                        "<strong>" + item.series.label + "</strong><br>" + monthNames[month] + " : <strong>" + y + "</strong>(USD)");
+                } else {
+                    showTooltip(item.pageX,
+                        item.pageY,
+                        color,
+                        "<strong>" + item.series.label + "</strong><br>" + monthNames[month] + " : <strong>" + y + "</strong>(%)");
+                }
+            }
+        } else {
+            $("#tooltip").remove();
+            previousPoint = null;
+        }
+    });
+};
+
