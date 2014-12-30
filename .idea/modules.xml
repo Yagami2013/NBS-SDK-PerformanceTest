@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/NBS-SDK-PerformanceTest.iml" filepath="$PROJECT_DIR$/NBS-SDK-PerformanceTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/TestReport.iml" filepath="$PROJECT_DIR$/TestReport.iml" />
     </modules>
   </component>

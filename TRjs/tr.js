@@ -71,6 +71,7 @@ function setData(classname, index) {
     }
 }
 
+
 function setData_HU(classname, index) {
     for (var i = 0; i < srcData_HU[index].length; i++) {
         mathData_HU[index] = mathData_HU[index].concat(sortData(srcData_HU[index][i]));
