@@ -93,7 +93,7 @@ function setData_OH(classname, index) {
 }
 
 function cloneObject(obj) {
-    var o, obj;
+    var o;
     if (obj.constructor == Object) {
         o = new obj.constructor();
     } else {

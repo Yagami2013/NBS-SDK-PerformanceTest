@@ -16,6 +16,7 @@
     <script src="/js/csv.js"></script>
     <script src="js/d3.min.js"></script>
     <script src="/TRjs/tr.js"></script>
+    <script type="text/javascript" src="/TRjs/filltable.js"></script>
 
 </head>
 <body>
@@ -241,8 +242,20 @@
 </div>
 
 <a href="/IOS.html">IOS 性能测试报告</a>
+
+<table id="tabletest"></table>
+
 </body>
 <script>
+
+    data = [
+            [1,2,3,4,5,6,7,8,9],
+            [6,7,8,9,0,1,2,3,4],
+        [6,7,8,9,0,1,2,3,4]
+    ]
+
+    fillTable("test table","HttpClient",3,"tabletest",data);
+
     /*
      * 解析HttpUrlConnetion数据
      * */
