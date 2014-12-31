@@ -1,4 +1,5 @@
 function fillTable(tablename, funname, versions, id,data) {
+
     var table = document.createElement('table');
     var body = document.createElement('tbody');
 

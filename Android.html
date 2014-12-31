@@ -17,6 +17,7 @@
     <script src="js/d3.min.js"></script>
     <script src="/TRjs/tr.js"></script>
     <script type="text/javascript" src="/TRjs/filltable.js"></script>
+    <script type="text/javascript" src="/TRjs/processdata.js"></script>
 
 </head>
 <body>
@@ -247,14 +248,35 @@
 
 </body>
 <script>
+    var versions = 2 + 1;
+    var mclassname = "URLConnection";
+    //var mfile = "/data/android/" + mclassname + "_" + i + ".csv";
+    var mflag = false;
 
-    data = [
-            [1,2,3,4,5,6,7,8,9],
-            [6,7,8,9,0,1,2,3,4],
-        [6,7,8,9,0,1,2,3,4]
+    data0 = [
+        [1, 2, 3, 4, 5, 6, 7, 8, 9,0,1,2,23,3,6,5,88,9],
+        [6, 7, 8, 9, 0, 1, 2, 3, 4,9,0,1,2,23,3,6,5,88],
+        [6, 7, 8, 9, 0, 1, 2, 3, 4,9,0,1,2,23,3,6,5,88]
     ]
 
-    fillTable("test table","HttpClient",3,"tabletest",data);
+    fillTable(mclassname, mclassname, versions, "tabletest", [getMathData(data0),getMathData(data0),getMathData(data0)]);
+//    d3.csv(mfile, function (error, data) {
+//        if (error) {
+//            console.log(error);
+//            mflag = true;
+//        }
+//        else {
+//            var msrcData = Array();
+//            var mMathData = Array();
+//            msrcData = parseData(data);
+//            for(var i =0;i<msrcData.length;i++){
+//                mMathData[i] = sortData(msrcData[i]);
+//                data.concat(mMathData[i]);
+//            }
+//            mflag = true
+//        }
+//    });
+
 
     /*
      * 解析HttpUrlConnetion数据
@@ -276,17 +298,17 @@
     }
     d3.csv(srcFile_HU[0], function (data) {
         //no sdk cpu,mem,duration source data
-        srcData_HU[0] = parseData(data);
+        srcData_HU[0] = getSrcData(data);
         flag_HU[0] = true;
         //console.log(srcData[i]);
     });
     d3.csv(srcFile_HU[1], function (data) {
-        srcData_HU[1] = parseData(data);
+        srcData_HU[1] = getSrcData(data);
         flag_HU[1] = true;
         //console.log(srcData[i]);
     });
     d3.csv(srcFile_HU[2], function (data) {
-        srcData_HU[2] = parseData(data);
+        srcData_HU[2] = getSrcData(data);
         flag_HU[2] = true;
         //console.log(srcData[i]);
     });
@@ -318,17 +340,17 @@
     }
     d3.csv(srcFile[0], function (data) {
         //no sdk cpu,mem,duration source data
-        srcData[0] = parseData(data);
+        srcData[0] = getSrcData(data);
         flag[0] = true;
         //console.log(srcData[i]);
     });
     d3.csv(srcFile[1], function (data) {
-        srcData[1] = parseData(data);
+        srcData[1] = getSrcData(data);
         flag[1] = true;
         //console.log(srcData[i]);
     });
     d3.csv(srcFile[2], function (data) {
-        srcData[2] = parseData(data);
+        srcData[2] = getSrcData(data);
         flag[2] = true;
         //console.log(srcData[i]);
     });
@@ -352,17 +374,17 @@
     }
     d3.csv(srcFile_OH[0], function (data) {
         //no sdk cpu,mem,duration source data
-        srcData_OH[0] = parseData(data);
+        srcData_OH[0] = getSrcData(data);
         flag_OH[0] = true;
         //console.log(srcData[i]);
     });
     d3.csv(srcFile_OH[1], function (data) {
-        srcData_OH[1] = parseData(data);
+        srcData_OH[1] = getSrcData(data);
         flag_OH[1] = true;
         //console.log(srcData[i]);
     });
     d3.csv(srcFile_OH[2], function (data) {
-        srcData_OH[2] = parseData(data);
+        srcData_OH[2] = getSrcData(data);
         flag_OH[2] = true;
         //console.log(srcData[i]);
     });
