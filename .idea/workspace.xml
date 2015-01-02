@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f63b8508-89a9-4037-869a-35e0e6143da7" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\TestReport\NBS-SDK-PerformanceTest\data\android\HttpClient_0.csv" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/ios/ASIHttpRequest_0.csv" afterPath="$PROJECT_DIR$/data/ios/ASIHttpRequest_0.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/ios/ASIHttpRequest_1.csv" afterPath="$PROJECT_DIR$/data/ios/ASIHttpRequest_1.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Android.html" afterPath="$PROJECT_DIR$/Android.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IOS.html" afterPath="$PROJECT_DIR$/IOS.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/ios/NSURLConnection_0.csv" afterPath="$PROJECT_DIR$/data/ios/NSURLConnection_0.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/ios/NSURLConnection_1.csv" afterPath="$PROJECT_DIR$/data/ios/NSURLConnection_1.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TRjs/main.js" afterPath="$PROJECT_DIR$/TRjs/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TRjs/processdata.js" afterPath="$PROJECT_DIR$/TRjs/processdata.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TRjs/filltable.js" afterPath="$PROJECT_DIR$/TRjs/filltable.js" />
     </list>
     <ignored path="TestReport.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,8 +64,8 @@
       <file leaf-file-name="IOS.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IOS.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.8846154" vertical-offset="1028" max-vertical-offset="1853">
-              <caret line="71" column="19" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
+            <state vertical-scroll-proportion="-12.769231" vertical-offset="518" max-vertical-offset="1819">
+              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -85,34 +78,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="processdata.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/TRjs/processdata.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49756888" vertical-offset="4640" max-vertical-offset="5508">
-              <caret line="291" column="47" selection-start-line="291" selection-start-column="47" selection-end-line="291" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="filltable.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TRjs/filltable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="867">
+              <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Android.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Android.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-32.692307" vertical-offset="0" max-vertical-offset="1819">
-              <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#7;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -123,6 +94,18 @@
             <state vertical-scroll-proportion="0.0" vertical-offset="369" max-vertical-offset="1003">
               <caret line="0" column="32" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Android.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Android.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.52012885" vertical-offset="204" max-vertical-offset="1819">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#7;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -141,13 +124,13 @@
         <option value="$PROJECT_DIR$/editor.css" />
         <option value="$PROJECT_DIR$/home.html" />
         <option value="$PROJECT_DIR$/TRjs/createtable.js" />
-        <option value="$PROJECT_DIR$/TRjs/filltable.js" />
         <option value="$PROJECT_DIR$/TRjs/tr.js" />
         <option value="$PROJECT_DIR$/TRjs/tmp.js" />
         <option value="$PROJECT_DIR$/TRjs/main.js" />
-        <option value="$PROJECT_DIR$/Android.html" />
-        <option value="$PROJECT_DIR$/IOS.html" />
         <option value="$PROJECT_DIR$/TRjs/processdata.js" />
+        <option value="$PROJECT_DIR$/TRjs/filltable.js" />
+        <option value="$PROJECT_DIR$/IOS.html" />
+        <option value="$PROJECT_DIR$/Android.html" />
       </list>
     </option>
   </component>
@@ -545,12 +528,12 @@
       <workItem from="1420008343961" duration="6065000" />
       <workItem from="1420016727495" duration="3984000" />
       <workItem from="1420020762062" duration="65000" />
-      <workItem from="1420197958896" duration="5741000" />
+      <workItem from="1420197958896" duration="6243000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151889000" />
+    <option name="totallyTimeSpent" value="152391000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="0" />
@@ -1143,44 +1126,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TRjs/filltable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="118" max-vertical-offset="765">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TRjs/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1003">
           <caret line="0" column="32" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IOS.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.8846154" vertical-offset="1028" max-vertical-offset="1853">
-          <caret line="71" column="19" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Android.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-32.692307" vertical-offset="0" max-vertical-offset="1819">
-          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#7;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1208,6 +1158,39 @@
         <state vertical-scroll-proportion="0.49756888" vertical-offset="4640" max-vertical-offset="5508">
           <caret line="291" column="47" selection-start-line="291" selection-start-column="47" selection-end-line="291" selection-end-column="47" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TRjs/filltable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="867">
+          <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IOS.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.769231" vertical-offset="518" max-vertical-offset="1819">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Android.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.52012885" vertical-offset="204" max-vertical-offset="1819">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#7;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

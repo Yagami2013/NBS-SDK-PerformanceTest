@@ -23,7 +23,13 @@ function fillTable(tablename, funname, versions, id,data) {
     for (var i = 0; i < versions; i++) {
         var row = document.createElement('tr');
         var column = document.createElement('td');
-        var message = document.createTextNode('SDK' + i +'.0');
+        var message;
+        if(i==0){
+            message = document.createTextNode('noSDK');
+        }else{
+            message = document.createTextNode('SDK' + i +'.0');
+        }
+
         row.appendChild(column).appendChild(message);
         for (var j = 0; j < 9; j++) {
             var column = document.createElement('td');
