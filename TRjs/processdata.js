@@ -1,16 +1,23 @@
 var stepCount = 100;
 function getSrcData(data) {
-
-    var length = data.length;
-    var cpu = Array();
-    var memory = Array();
-    var duration = Array();
-    for (var i = 0; i < length; i++) {
-        cpu[i] = parseFloat(data[i]['Cpu']);
-        memory[i] = parseFloat(data[i]['Mem']) / 1000000;
-        duration[i] = parseFloat(data[i]['Duration']);
+    if (data == null) {
+        console.log("get source data failed!");
+        return;
     }
-    return [cpu, memory, duration]
+    else {
+        var length = data.length;
+        var cpu = Array();
+        var memory = Array();
+        var duration = Array();
+        for (var i = 0; i < length; i++) {
+            cpu[i] = parseFloat(data[i]['Cpu']);
+            memory[i] = parseFloat(data[i]['Mem']) / 1000000;
+            duration[i] = parseFloat(data[i]['Duration']);
+        }
+        return [cpu, memory, duration]
+    }
+
+
 }
 
 function getMathData(data) {
@@ -282,6 +289,7 @@ String.format = function () {
     return str;
 }
 
+var previousPoint = null, previousLabel = null;
 $.fn.UseTooltip = function (htmlFormat, fixYValue, fixLength) {
     $(this).bind("plothover", function (event, pos, item) {
         if (item) {

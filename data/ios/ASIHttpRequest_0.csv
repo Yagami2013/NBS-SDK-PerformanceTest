@@ -1,4 +1,4 @@
-phoneType,iosVersion,embedMod,mem,duration,networkType,methodName,cpu
+phoneType,iosVersion,embedMod,Mem,Duration,networkType,methodName,Cpu
 "iPhone4,1",7.0.2,0,19,103,1,startSyncRequest,19
 "iPhone4,1",7.0.2,0,20,58,1,startSyncRequest,33
 "iPhone4,1",7.0.2,0,20,30,1,startSyncRequest,33
