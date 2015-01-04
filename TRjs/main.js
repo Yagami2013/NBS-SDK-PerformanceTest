@@ -1,4 +1,10 @@
-function start(platform,tableId,classname,versions,ids){
+function getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一张含有目标参数的正则表达式对象
+    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+    if (r != null) return unescape(r[2]);
+    return null; //返回参数值
+}
+function start(path, platform, tableId, classname, versions, ids) {
     //var versions =3;
     //var classname = "URLConnection";
     var flag = Array();
@@ -8,8 +14,10 @@ function start(platform,tableId,classname,versions,ids){
     for (var i = 0; i < versions; i++) {
 
         flag[i] = false;
-        srcData[i] = [[0],[0],[0]];
-        srcFile[i] = "/data/"+platform +"/"+ classname + "_" + i + ".csv";
+        srcData[i] = [[0], [0], [0]];
+        var dataPath = String.format("/data/{0}/{1}/{2}_{3}.csv", path, platform, classname, i);
+        srcFile[i] = dataPath;
+        //srcFile[i] = "/data/"+platform +"/"+ classname + "_" + i + ".csv";
 
     }
 
@@ -44,7 +52,7 @@ function start(platform,tableId,classname,versions,ids){
 
     function clock() {
 
-        if (flag[0]&&flag[1]&&flag[2]) {
+        if (flag[0] && flag[1] && flag[2]) {
 
             isFinished2 = window.clearInterval(isFinished2);
             fillTable(classname, classname, versions, tableId, [getMathData(srcData[0]), getMathData(srcData[1]), getMathData(srcData[2])]);
