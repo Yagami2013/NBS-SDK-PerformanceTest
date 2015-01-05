@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f63b8508-89a9-4037-869a-35e0e6143da7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hideList.css" />
       <change type="DELETED" beforePath="D:\NBS-SDK-PerformanceTest\data\IOS 1.0.14性能数据\ASIHttpRequest-nosdk-actions.txt" afterPath="" />
       <change type="DELETED" beforePath="D:\NBS-SDK-PerformanceTest\data\IOS 1.0.14性能数据\ASIHttpRequest-sdk-actions.txt" afterPath="" />
       <change type="DELETED" beforePath="D:\NBS-SDK-PerformanceTest\data\IOS 1.0.14性能数据\NSURLConnection-nosdk-actions.txt" afterPath="" />
@@ -26,9 +25,7 @@
       <change type="DELETED" beforePath="D:\NBS-SDK-PerformanceTest\data\performanceData.csv" afterPath="" />
       <change type="DELETED" beforePath="D:\NBS-SDK-PerformanceTest\data\sdk-oschina - 副本.csv" afterPath="" />
       <change type="DELETED" beforePath="D:\NBS-SDK-PerformanceTest\data\sdk-oschina.csv" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Android.html" afterPath="$PROJECT_DIR$/Android.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index.html" afterPath="$PROJECT_DIR$/Index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TestReport.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,11 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.50578034" vertical-offset="0" max-vertical-offset="692">
-              <caret line="14" column="123" selection-start-line="14" selection-start-column="123" selection-end-line="14" selection-end-column="123" />
+            <state vertical-scroll-proportion="-6.617647" vertical-offset="0" max-vertical-offset="575">
+              <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -115,18 +112,18 @@
       <file leaf-file-name="Android.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Android.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.176471" vertical-offset="1995" max-vertical-offset="2700">
+            <state vertical-scroll-proportion="-69.85294" vertical-offset="0" max-vertical-offset="2700">
               <caret line="95" column="32" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="processdata.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="processdata.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TRjs/processdata.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.866667" vertical-offset="314" max-vertical-offset="8100">
-              <caret line="22" column="20" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="20" />
+            <state vertical-scroll-proportion="-1.0070522" vertical-offset="1214" max-vertical-offset="8100">
+              <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -573,12 +570,12 @@
       <workItem from="1420297645185" duration="696000" />
       <workItem from="1420352055771" duration="75000" />
       <workItem from="1420352197275" duration="992000" />
-      <workItem from="1420429340223" duration="8674000" />
+      <workItem from="1420429340223" duration="9694000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="162952000" />
+    <option name="totallyTimeSpent" value="163972000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
@@ -1142,18 +1139,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TRjs/main.js">
+    <entry file="file://$PROJECT_DIR$/Android.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="936" max-vertical-offset="1675">
-          <caret line="40" column="7" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TRjs/processdata.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.866667" vertical-offset="314" max-vertical-offset="8100">
-          <caret line="22" column="20" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="20" />
+        <state vertical-scroll-proportion="-69.85294" vertical-offset="0" max-vertical-offset="2700">
+          <caret line="95" column="32" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -1173,18 +1162,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Android.html">
+    <entry file="file://$PROJECT_DIR$/Index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.176471" vertical-offset="1995" max-vertical-offset="2700">
-          <caret line="95" column="32" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
+        <state vertical-scroll-proportion="-6.617647" vertical-offset="0" max-vertical-offset="575">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Index.html">
+    <entry file="file://$PROJECT_DIR$/TRjs/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50578034" vertical-offset="0" max-vertical-offset="692">
-          <caret line="14" column="123" selection-start-line="14" selection-start-column="123" selection-end-line="14" selection-end-column="123" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="949" max-vertical-offset="1675">
+          <caret line="40" column="7" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TRjs/processdata.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0070522" vertical-offset="1214" max-vertical-offset="8100">
+          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
           <folding />
         </state>
       </provider>
