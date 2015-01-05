@@ -93,9 +93,10 @@
     var ids0 = ["flot-placeholder1","flot-placeholder2","flot-placeholder3"];
     var ids1 = ["flot-placeholder4","flot-placeholder5","flot-placeholder6"];
     var ids2 = ["flot-placeholder7","flot-placeholder8","flot-placeholder9"];
-    start("android","androidsummary","URLConnection",versions,ids0);
-    start("android","androidsummary","HttpClient",versions,ids1);
-    start("android","androidsummary","OkHttp",versions,ids2);
+    var path = getUrlParam("v");
+    start(path,"android","androidsummary","URLConnection",versions,ids0);
+    start(path,"android","androidsummary","HttpClient",versions,ids1);
+    start(path,"android","androidsummary","OkHttp",versions,ids2);
 
 </script>
 </html>
