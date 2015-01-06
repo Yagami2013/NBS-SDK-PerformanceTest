@@ -1,76 +1,115 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>听云app SDK性能测试</title>
-    <link rel="stylesheet" href=“/css/bootstrap.min.css">
-    <link rel="stylesheet" href=“/css/bootstrap-theme.min.css">
-    <script src="js/bootstrap.js"></script>
-    <script src="js/npm.js"></script>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>听云APP SDK性能测试</title>
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <nav class="navbar navbar-default" role="navigation">
                 <div class="navbar-header">
-                    <li><a class="hide" href="../mozilla/index.html">MOZILLA</a>
-                        <!--[if lte IE 6]>
-                        <a href="../mozilla/index.html">MOZILLA
-                            <table><tr><td>
-                        <![endif]-->
-                        <ul>
-                            <li><a href="../mozilla/dropdown.html" title="A drop down menu">drop down menu</a></li>
-                            <li><a href="../mozilla/cascade.html" title="A cascading menu">cascading menu</a></li>
-                            <li><a href="../mozilla/content.html" title="Using content:">content:</a></li>
-                            <li><a href="../mozilla/moxbox.html" title=":hover applied to a div">mozzie box</a></li>
-                            <li><a href="../mozilla/rainbow.html" title="I can build a rainbow">rainbow box</a></li>
-                            <li><a href="../mozilla/snooker.html" title="Snooker cue">snooker cue</a></li>
-                            <li><a href="../mozilla/target.html" title="Target Practise">target practise</a></li>
-                            <li><a href="../mozilla/splittext.html" title="Two tone headings">two tone headings</a></li>
-                            <li><a href="../mozilla/shadow_text.html" title="Shadow text">shadow text</a></li>
-                        </ul>
-                        <!--[if lte IE 6]>
-                        </td></tr></table>
-                        </a>
-                        <![endif]-->
-                    </li>
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="http://www.tingyun.com/">听云</a>
+                </div>
 
+                <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="#">Link</a>
+                        </li>
+                        <li>
+                            <a href="#">Link</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Another action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Something else here</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">Separated link</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">One more separated link</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input class="form-control" type="text" />
+                        </div> <button class="btn btn-default" type="submit">Submit</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">Link</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Another action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Something else here</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">Separated link</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
 
             </nav>
             <div class="jumbotron">
                 <h1>
-                    听云APP SDK性能测试
+                    每一款应用，都需要听云
                 </h1>
                 <p>
-                    This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+                    点击下方列表查看听云SDK性能测试历史数据
+
                 </p>
                 <p>
-                    <a class="btn btn-primary btn-large" href="#">Learn more</a>
+                    点击“创建测试”，上传测试数据，刷新页面得到性能测试报告
                 </p>
-            </div>
-            <div class="list-group">
-                <div class="list-group-item">
-                    历史版本
-                </div>
-                <div class="list-group-item">
-                    <p class="list-group-item-text">
-                        2015-01-08 Build0224 Android IOS
-                    </p>
-                </div>
-                <div class="list-group-item">
-                    <span class="badge">14</span> 2014-12-27 Build0223 Android IOS
-                </div> <a class="list-group-item active"> <span class="badge">14</span> ......</a>
+                <p>
+                    <a class="btn btn-primary btn-large" href="#">创建测试</a>
+                </p>
             </div>
         </div>
     </div>
+    <div class="row clearfix">
+        <li>
+            <span>20150103Build2234</span> <a href="ios.html?v=20150103Build2234">IOS</a> <a href="android.html?v=20150103Build2234">Android</a>
+        </li>
+        <li>
+            <span>20141212Build2222</span> <a href="ios.html?v=20141212Build2222">IOS</a> <a href="android.html?v=20141212Build2222">Android</a>
+        </li>
+
+    </div>
 </div>
 
-<li><span>20141212Build2222</span> <a href="ios.html?v=20141212Build2222">IOS</a> <a href="android.html?v=20141212Build2222">Android</a>
-</li>
-
-<li><span>20150103Build2234</span> <a href="ios.html?v=20150103Build2234">IOS</a> <a href="android.html?v=20150103Build2234">Android</a>
-</li>
 </body>
 </html>
