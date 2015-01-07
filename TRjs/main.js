@@ -4,7 +4,7 @@ function getUrlParam(name) {
     if (r != null) return unescape(r[2]);
     return null; //返回参数值
 }
-function start(path, platform, tableId, classname, versions, ids) {
+function start(path, platform, tableId,table2Id, classname, versions, ids) {
     //var versions =3;
     //var classname = "URLConnection";
     var flag = Array();
@@ -55,7 +55,7 @@ function start(path, platform, tableId, classname, versions, ids) {
         if (flag[0] && flag[1] && flag[2]) {
 
             isFinished2 = window.clearInterval(isFinished2);
-            fillTable(classname, classname, versions, tableId, [getMathData(srcData[0]), getMathData(srcData[1]), getMathData(srcData[2])]);
+            fillTable(classname,versions, tableId,table2Id, [getMathData(srcData[0]), getMathData(srcData[1]), getMathData(srcData[2])]);
             displayData2(srcData[0], srcData[1], srcData[2], ids[0], ids[1], ids[2]);
         }
     }

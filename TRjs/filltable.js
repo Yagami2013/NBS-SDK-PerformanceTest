@@ -1,5 +1,4 @@
-function fillTable(tablename, funname, versions, id,data) {
-
+function fillTable(tablename, versions, ida,idb,data) {
     var table = document.createElement('table');
     var body = document.createElement('tbody');
 
@@ -12,13 +11,13 @@ function fillTable(tablename, funname, versions, id,data) {
         "Memory均值(MB)", "Memory标准差", "Memory中位数",
         "Duration均值(ms)", "Duration标准差", "Duration中位数"];
     var row = document.createElement('tr');
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < head.length; i++) {
         var m = document.createTextNode(head[i]);
         var thead = document.createElement('th');
         thead.appendChild(m);
         row.appendChild(thead);
     }
-    table.appendChild(row);
+    body.appendChild(row);
 
     for (var i = 0; i < versions; i++) {
         var row = document.createElement('tr');
@@ -29,18 +28,54 @@ function fillTable(tablename, funname, versions, id,data) {
         }else{
             message = document.createTextNode('SDK' + i +'.0');
         }
-
         row.appendChild(column).appendChild(message);
-        for (var j = 0; j < 9; j++) {
+        for (var j = 0; j < head.length-1; j++) {
             var column = document.createElement('td');
             var message = document.createTextNode(data[i][j]);
             column.appendChild(message);
             row.appendChild(column);
         }
         body.appendChild(row);
-    }
 
+    }
     table.appendChild(body);
-    document.getElementById(id).appendChild(table);
+    document.getElementById(ida).appendChild(table);
+    table.setAttribute('border', '1');
+
+    //增加“嵌码比不嵌码增加百分比”表
+
+    var table = document.createElement('table');
+    var body = document.createElement('tbody');
+    var caption = document.createElement('caption');
+    var highlight = document.createElement('b');
+    var title = document.createTextNode(tablename);
+    table.appendChild(caption).appendChild(highlight).appendChild(title);
+    var head2 = ["Version","CPU", "Memory", "Duration"];
+    var row = document.createElement('tr');
+    for (var i = 0; i < head2.length; i++) {
+        var m = document.createTextNode(head2[i]);
+        var thead = document.createElement('th');
+        thead.appendChild(m);
+        row.appendChild(thead);
+    }
+    body.appendChild(row);
+
+    for (var i = 1; i < versions; i++) {
+        var row = document.createElement('tr');
+        var column = document.createElement('td');
+        var message = document.createTextNode('SDK' + i +'.0');
+        row.appendChild(column).appendChild(message);
+        for (var j = 0; j < head2.length-1; j++) {
+            var column = document.createElement('td');
+            var tmp = (data[i][j*3]-data[0][j*3])/data[0][j*3]*100;
+            var message = document.createTextNode(tmp.toFixed(2));
+            column.appendChild(message);
+            row.appendChild(column);
+        }
+        body.appendChild(row);
+    }
+    table.appendChild(body);
+    document.getElementById(idb).appendChild(table);
     table.setAttribute('border', '1');
 }
+
