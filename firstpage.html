@@ -9,6 +9,7 @@
     <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.fr.js"></script>
 </head>
 <body>
 <div class="container">
@@ -24,84 +25,12 @@
                 </div>
 
                 <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">年<strong class="caret"></strong></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#">2014</a>
-                                </li>
-                                <li>
-                                    <a href="#">2015</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">月<strong class="caret"></strong></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#">1月</a>
-                                </li>
-                                <li>
-                                    <a href="#">2月</a>
-                                </li>
-                                <li>
-                                    <a href="#">3月</a>
-                                </li>
-                                <li>
-                                    <a href="#">4月</a>
-                                </li>
-                                <li>
-                                    <a href="#">5月</a>
-                                </li>
-                                <li>
-                                    <a href="#">6月</a>
-                                </li>
-                                <li>
-                                    <a href="#">7月</a>
-                                </li>
-                                <li>
-                                    <a href="#">8月</a>
-                                </li>
-                                <li>
-                                    <a href="#">9月</a>
-                                </li>
-                                <li>
-                                    <a href="#">10月</a>
-                                </li>
-                                <li>
-                                    <a href="#">11月</a>
-                                </li>
-                                <li>
-                                    <a href="#">12月</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">日<strong class="caret"></strong></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#">Action</a>
-                                </li>
-                                <li>
-                                    <a href="#">Another action</a>
-                                </li>
-                                <li>
-                                    <a href="#">Something else here</a>
-                                </li>
-                                <li class="divider">
-                                </li>
-                                <li>
-                                    <a href="#">Separated link</a>
-                                </li>
-                                <li class="divider">
-                                </li>
-                                <li>
-                                    <a href="#">One more separated link</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+
+                    <div class="nav navbar-nav navbar-center input-append date form_datetime">
+                        <input size="16" type="text" value="20150101">
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+
                     <ul class="nav navbar-nav navbar-right">
                         <div class="span12">
                             <form class="form-search form-inline">
@@ -121,22 +50,27 @@
                 <h1>
                     每一款应用，都需要听云
                 </h1>
+
                 <p>
                     点击下方列表查看听云SDK性能测试历史数据
                 </p>
+
                 <p>
                     点击“创建测试”，上传测试数据，刷新页面得到性能测试报告
                 </p>
+
                 <p>
                     <a class="btn btn-primary btn-large" href="#">创建测试</a>
                 </p>
             </div>
             <ol class="list-unstyled">
                 <li>
-                    <span>20150107Build2234</span> <a href="ios.html?v=20150107Build2234">IOS</a> <a href="android.html?v=20150107Build2234">Android</a>
+                    <span>20150107Build2234</span> <a href="ios.html?v=20150107Build2234">IOS</a> <a
+                        href="android.html?v=20150107Build2234">Android</a>
                 </li>
                 <li>
-                    <span>20141212Build2222</span> <a href="ios.html?v=20141212Build2222">IOS</a> <a href="android.html?v=20141212Build2222">Android</a>
+                    <span>20141212Build2222</span> <a href="ios.html?v=20141212Build2222">IOS</a> <a
+                        href="android.html?v=20141212Build2222">Android</a>
                 </li>
             </ol>
             <ul class="pagination">
@@ -166,4 +100,15 @@
     </div>
 </div>
 </body>
+<script type="text/javascript">
+    $(".form_datetime").datetimepicker({
+        format: "yyyymmdd",
+        weekStart: 1,
+        startDate: "2014-01-01",
+        minView: 2,
+        autoclose: true,
+        todayBtn: true,
+        pickerPosition: "bottom-left"
+    });
+</script>
 </html>

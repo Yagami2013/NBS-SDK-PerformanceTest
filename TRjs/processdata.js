@@ -27,33 +27,45 @@ function getMathData(data) {
     }
     return mathData;
 }
+function bubbleSort(arr,length) {
+    var i = length, j;
+    var tempExchangVal;
+    while (i > 0) {
+        for (j = 0; j < i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                tempExchangVal = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = tempExchangVal;
+            }
+        }
+        i--;
+    }
+    return arr;
+}
+
 
 function sortData(key) {
     var avg = 0;
-    var max = 0;
-    var min = 0;
     var mid = 0;
-    var sd = 0;
     var length = key.length
 
     for (var i = 0; i < length; i++) {
-
         avg += key[i];
-        if (max <= key[i]) {
-            max = key[i];
-        }
-        if (min >= key[i]) {
-            min = key[i];
-        }
     }
     avg = avg / length;
-    mid = (max - min) / 2;
+
+   var sorted = bubbleSort(key, length);
+    if (length % 2 == 0) {
+        mid = (sorted[length / 2] + sorted[length / 2 - 1]) / 2;
+    } else {
+        mid = sorted[(length+1) / 2-1];
+    }
 
     var sum = 0;
     for (var i = 0; i < length; i++) {
         sum += (key[i] - avg) * (key[i] - avg);
     }
-    sd = Math.sqrt(sum / length);
+   var sd = Math.sqrt(sum / length);
 
     var decimalLength = 2;
     return [avg.toFixed(decimalLength), sd.toFixed(decimalLength), mid.toFixed(decimalLength)];
