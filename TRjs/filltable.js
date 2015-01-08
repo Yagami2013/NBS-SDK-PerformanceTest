@@ -1,9 +1,10 @@
 function fillTable(tablename, versions, ida,idb,data) {
     var table = document.createElement('table');
-    table.className = "table table-bordered table-condensed";
+    table.className = "table table-bordered table-condensed";//适应bootstrap布局
     var body = document.createElement('tbody');
 
     var caption = document.createElement('caption');
+    caption.className = "text-center";//适应bootstrap布局
     var highlight = document.createElement('b');
     var title = document.createTextNode(tablename);
     table.appendChild(caption).appendChild(highlight).appendChild(title);
@@ -47,9 +48,10 @@ function fillTable(tablename, versions, ida,idb,data) {
     //增加“嵌码比不嵌码增加百分比”表
 
     var table = document.createElement('table');
-    table.className = "table table-bordered table-condensed";
+    table.className = "table table-bordered table-condensed";//适应bootstrap布局
     var body = document.createElement('tbody');
     var caption = document.createElement('caption');
+    caption.className = "text-center";//适应bootstrap布局
     var highlight = document.createElement('b');
     var title = document.createTextNode(tablename);
     table.appendChild(caption).appendChild(highlight).appendChild(title);
