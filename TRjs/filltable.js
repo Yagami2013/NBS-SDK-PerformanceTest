@@ -1,5 +1,6 @@
 function fillTable(tablename, versions, ida,idb,data) {
     var table = document.createElement('table');
+    table.className = "table table-bordered table-condensed";
     var body = document.createElement('tbody');
 
     var caption = document.createElement('caption');
@@ -28,7 +29,8 @@ function fillTable(tablename, versions, ida,idb,data) {
         }else{
             message = document.createTextNode('SDK' + i +'.0');
         }
-        row.appendChild(column).appendChild(message);
+        column.appendChild(message);
+        row.appendChild(column);
         for (var j = 0; j < head.length-1; j++) {
             var column = document.createElement('td');
             var message = document.createTextNode(data[i][j]);
@@ -45,6 +47,7 @@ function fillTable(tablename, versions, ida,idb,data) {
     //增加“嵌码比不嵌码增加百分比”表
 
     var table = document.createElement('table');
+    table.className = "table table-bordered table-condensed";
     var body = document.createElement('tbody');
     var caption = document.createElement('caption');
     var highlight = document.createElement('b');
