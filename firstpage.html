@@ -10,40 +10,43 @@
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap-datetimepicker.js"></script>
     <script type="text/javascript" src="js/bootstrap-datetimepicker.fr.js"></script>
+    <link href="/js/dataTable/css/jquery.dataTables.css" rel="stylesheet"/>
+    <script type="text/javascript" src="js/dataTable/js/jquery.dataTables.min.js"></script>
+
 </head>
 <body>
 <div class="container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <nav class="navbar navbar-default" role="navigation">
-                <div class="navbar-header">
-                    <button class="navbar-toggle" type="button" data-toggle="collapse"
-                            data-target="#bs-example-navbar-collapse-1"><span
-                            class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
-                            class="icon-bar"></span><span class="icon-bar"></span></button>
-                    <a class="navbar-brand" href="#">Brand</a>
-                </div>
+    <!--<div class="row clearfix">-->
+    <!--<div class="col-md-12 column">-->
+    <!--<nav class="navbar navbar-default" role="navigation">-->
+    <!--<div class="navbar-header">-->
+    <!--<button class="navbar-toggle" type="button" data-toggle="collapse"-->
+    <!--data-target="#bs-example-navbar-collapse-1"><span-->
+    <!--class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span-->
+    <!--class="icon-bar"></span><span class="icon-bar"></span></button>-->
+    <!--<a class="navbar-brand" href="#">Brand</a>-->
+    <!--</div>-->
 
-                <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+    <!--<div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">-->
 
-                    <div class="nav navbar-nav navbar-center input-append date form_datetime">
-                        <input size="16" type="text" value="20150101">
-                        <span class="add-on"><i class="icon-th"></i></span>
-                    </div>
+    <!--<div class="nav navbar-nav navbar-center input-append date form_datetime">-->
+    <!--<input size="16" type="text" value="20150101">-->
+    <!--<span class="add-on"><i class="icon-th"></i></span>-->
+    <!--</div>-->
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <div class="span12">
-                            <form class="form-search form-inline">
-                                <input class="input-medium search-query" type="text"/>
-                                <button class="btn" type="submit">搜索</button>
-                            </form>
-                        </div>
-                    </ul>
-                </div>
+    <!--<ul class="nav navbar-nav navbar-right">-->
+    <!--<div class="span12">-->
+    <!--<form class="form-search form-inline">-->
+    <!--<input class="input-medium search-query" type="text"/>-->
+    <!--<button class="btn" type="submit">搜索</button>-->
+    <!--</form>-->
+    <!--</div>-->
+    <!--</ul>-->
+    <!--</div>-->
 
-            </nav>
-        </div>
-    </div>
+    <!--</nav>-->
+    <!--</div>-->
+    <!--</div>-->
     <div class="row clearfix">
         <div class="col-md-12 column">
             <div class="jumbotron">
@@ -63,52 +66,47 @@
                     <a class="btn btn-primary btn-large" href="#">创建测试</a>
                 </p>
             </div>
-            <ol class="list-unstyled">
-                <li>
-                    <span>20150107Build2234</span> <a href="ios.html?v=20150107Build2234">IOS</a> <a
-                        href="android.html?v=20150107Build2234">Android</a>
-                </li>
-                <li>
-                    <span>20141212Build2222</span> <a href="ios.html?v=20141212Build2222">IOS</a> <a
-                        href="android.html?v=20141212Build2222">Android</a>
-                </li>
-            </ol>
-            <ul class="pagination">
-                <li>
-                    <a href="#">Prev</a>
-                </li>
-                <li>
-                    <a href="#">1</a>
-                </li>
-                <li>
-                    <a href="#">2</a>
-                </li>
-                <li>
-                    <a href="#">3</a>
-                </li>
-                <li>
-                    <a href="#">4</a>
-                </li>
-                <li>
-                    <a href="#">5</a>
-                </li>
-                <li>
-                    <a href="#">Next</a>
-                </li>
-            </ul>
+            <table id="testtable">
+                <thead>
+                <tr>
+                    <th style=" align-content: center;">日期</th>
+                    <th align='center'>版本号</th>
+                    <th>IOS</th>
+                    <th>Android</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td>20141212</td>
+                    <td>Build2222</td>
+                    <td><a href="ios.html?v=20141212Build2222">IOS</a></td>
+                    <td><a href="android.html?v=20141212Build2222">Android</a></td>
+                </tr>
+                <tr>
+                    <td>20150107</td>
+                    <td>Build2234</td>
+                    <td><a href="ios.html?v=20150107Build2234">IOS</a></td>
+                    <td><a href="android.html?v=20150107Build2234">Android</a></td>
+                </tr>
+            </table>
+
         </div>
     </div>
 </div>
 </body>
 <script type="text/javascript">
-    $(".form_datetime").datetimepicker({
-        format: "yyyymmdd",
-        weekStart: 1,
-        startDate: "2014-01-01",
-        minView: 2,
-        autoclose: true,
-        todayBtn: true,
-        pickerPosition: "bottom-left"
+    $('#testtable').DataTable({
+        "bStateSave": true
     });
+    //    $(".form_datetime").datetimepicker({
+    //        format: "yyyymmdd",
+    //        weekStart: 1,
+    //        startDate: "2014-01-01",
+    //        minView: 2,
+    //        autoclose: true,
+    //        todayBtn: true,
+    //        pickerPosition: "bottom-left"
+    //    });
+
+
 </script>
 </html>
