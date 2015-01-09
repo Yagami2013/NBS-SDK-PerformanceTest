@@ -232,7 +232,7 @@ function displayData2(data0, data1, data2, id_cpu, id_mem, id_duration) {
     };
     var options2 = cloneObject(options1);
     options2.xaxis.axisLabel = String.format("采样时间(按照顺序均分为{0}等份)", window.stepCount);
-    options2.yaxis.axisLabel = "内存使用(Mb)";
+    options2.yaxis.axisLabel = "内存使用(MB)";
 
     var options3 = cloneObject(options1);
     options3.xaxis.axisLabel = String.format("采样时间(按照顺序均分为{0}等份)", window.stepCount);
