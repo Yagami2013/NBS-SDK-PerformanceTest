@@ -1,4 +1,4 @@
-function fillTable(tablename, versions, ida,idb,data) {
+function fillTable(tablename, versions, ida, idb, data) {
     var table = document.createElement('table');
     table.className = "table table-bordered table-condensed";//适应bootstrap布局
     var body = document.createElement('tbody');
@@ -25,14 +25,14 @@ function fillTable(tablename, versions, ida,idb,data) {
         var row = document.createElement('tr');
         var column = document.createElement('td');
         var message;
-        if(i==0){
+        if (i == 0) {
             message = document.createTextNode('noSDK');
-        }else{
-            message = document.createTextNode('SDK' + i +'.0');
+        } else {
+            message = document.createTextNode('SDK' + i + '.0');
         }
         column.appendChild(message);
         row.appendChild(column);
-        for (var j = 0; j < head.length-1; j++) {
+        for (var j = 0; j < head.length - 1; j++) {
             var column = document.createElement('td');
             var message = document.createTextNode(data[i][j]);
             column.appendChild(message);
@@ -55,7 +55,7 @@ function fillTable(tablename, versions, ida,idb,data) {
     var highlight = document.createElement('b');
     var title = document.createTextNode(tablename);
     table.appendChild(caption).appendChild(highlight).appendChild(title);
-    var head2 = ["Version","CPU", "Memory", "Duration"];
+    var head2 = ["Version", "CPU", "Memory", "Duration"];
     var row = document.createElement('tr');
     for (var i = 0; i < head2.length; i++) {
         var m = document.createTextNode(head2[i]);
@@ -68,12 +68,19 @@ function fillTable(tablename, versions, ida,idb,data) {
     for (var i = 1; i < versions; i++) {
         var row = document.createElement('tr');
         var column = document.createElement('td');
-        var message = document.createTextNode('SDK' + i +'.0');
+        var message = document.createTextNode('SDK' + i + '.0');
         row.appendChild(column).appendChild(message);
-        for (var j = 0; j < head2.length-1; j++) {
+        for (var j = 0; j < head2.length - 1; j++) {
             var column = document.createElement('td');
-            var tmp = (data[i][j*3]-data[0][j*3])/data[0][j*3]*100;
-            var message = document.createTextNode(tmp.toFixed(2));
+            var tmp;
+            if (data[0][j] == 0) {
+                tmp = "--";
+            }
+            else {
+                tmp = (data[i][j * 3] - data[0][j * 3]) / data[0][j * 3] * 100;
+                tmp = tmp.toFixed(2);
+            }
+            var message = document.createTextNode(tmp);
             column.appendChild(message);
             row.appendChild(column);
         }
