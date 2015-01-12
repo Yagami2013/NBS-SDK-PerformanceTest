@@ -2,59 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f63b8508-89a9-4037-869a-35e0e6143da7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/20150108Build10162009/ios/ASIHttpRequest_0.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/20150108Build10162009/ios/ASIHttpRequest_1.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/20150108Build10162009/ios/ASIHttpRequest_2.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IOS.html.bak" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/20150108Build10162009/ios/NSURLConnection_0.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/20150108Build10162009/ios/NSURLConnection_1.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/20150108Build10162009/ios/NSURLConnection_2.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/20150108Build10162009/ios/oschina_0.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/20150108Build10162009/ios/oschina_1.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/20150108Build10162009/ios/oschina_2.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/20150108Build10162009/ios/performanceData.csv" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\android\HttpClient_0.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\android\HttpClient_1.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\android\HttpClient_2.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\android\OkHttp_0.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\android\OkHttp_1.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\android\OkHttp_2.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\android\URLConnection_0.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\android\URLConnection_1.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\android\URLConnection_2.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\ios\ASIHttpRequest_0.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\ios\ASIHttpRequest_1.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\ios\ASIHttpRequest_2.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\ios\NSURLConnection_0.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\ios\NSURLConnection_1.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\ios\NSURLConnection_2.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\ios\oschina_0.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\ios\oschina_1.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\ios\oschina_2.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20141212Build2222\ios\performanceData.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\android\HttpClient_0.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\android\HttpClient_1.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\android\HttpClient_2.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\android\OkHttp_0.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\android\OkHttp_1.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\android\OkHttp_2.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\android\URLConnection_0.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\android\URLConnection_1.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\android\URLConnection_2.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\ios\ASIHttpRequest_0.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\ios\ASIHttpRequest_1.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\ios\ASIHttpRequest_2.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\ios\NSURLConnection_0.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\ios\NSURLConnection_1.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\ios\NSURLConnection_2.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\ios\oschina_0.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\ios\oschina_1.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\ios\oschina_2.csv" afterPath="" />
-      <change type="DELETED" beforePath="D:\TestReport\data\20150107Build2234\ios\performanceData.csv" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index.html" afterPath="$PROJECT_DIR$/Index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TRjs/processdata.js" afterPath="$PROJECT_DIR$/TRjs/processdata.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web.config" afterPath="$PROJECT_DIR$/web.config" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TestReport.iws" />
@@ -107,8 +55,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TRjs/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="949" max-vertical-offset="1675">
-              <caret line="57" column="59" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="59" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="874" max-vertical-offset="1675">
+              <caret line="57" column="72" selection-start-line="57" selection-start-column="61" selection-end-line="57" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -143,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="processdata.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="processdata.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TRjs/processdata.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.8333333" vertical-offset="5825" max-vertical-offset="8400">
-              <caret line="234" column="39" selection-start-line="234" selection-start-column="39" selection-end-line="234" selection-end-column="39" />
+            <state vertical-scroll-proportion="-0.2368065" vertical-offset="1650" max-vertical-offset="8700">
+              <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -163,10 +111,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.07225434" vertical-offset="2025" max-vertical-offset="2975">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2025" max-vertical-offset="2975">
               <caret line="79" column="35" selection-start-line="79" selection-start-column="35" selection-end-line="79" selection-end-column="35" />
               <folding>
                 <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -212,9 +160,9 @@
         <option value="$PROJECT_DIR$/TRjs/main.js" />
         <option value="$PROJECT_DIR$/Android.html" />
         <option value="$PROJECT_DIR$/TRjs/filltable.js" />
-        <option value="$PROJECT_DIR$/TRjs/processdata.js" />
-        <option value="$PROJECT_DIR$/TRjs/processdata.js" />
         <option value="$PROJECT_DIR$/Index.html" />
+        <option value="$PROJECT_DIR$/TRjs/processdata.js" />
+        <option value="$PROJECT_DIR$/TRjs/processdata.js" />
       </list>
     </option>
   </component>
@@ -253,7 +201,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -274,7 +222,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -611,11 +559,13 @@
       <workItem from="1420771077317" duration="3795000" />
       <workItem from="1420776890918" duration="348000" />
       <workItem from="1420777757697" duration="2165000" />
+      <workItem from="1421031672708" duration="3772000" />
+      <workItem from="1421044837536" duration="1702000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212633000" />
+    <option name="totallyTimeSpent" value="218107000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
@@ -1326,29 +1276,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2025" max-vertical-offset="2975">
+          <caret line="79" column="35" selection-start-line="79" selection-start-column="35" selection-end-line="79" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TRjs/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="949" max-vertical-offset="1675">
-          <caret line="57" column="59" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="874" max-vertical-offset="1675">
+          <caret line="57" column="72" selection-start-line="57" selection-start-column="61" selection-end-line="57" selection-end-column="72" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TRjs/processdata.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.8333333" vertical-offset="5825" max-vertical-offset="8400">
-          <caret line="234" column="39" selection-start-line="234" selection-start-column="39" selection-end-line="234" selection-end-column="39" />
+        <state vertical-scroll-proportion="-0.2368065" vertical-offset="1650" max-vertical-offset="8700">
+          <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.07225434" vertical-offset="2025" max-vertical-offset="2975">
-          <caret line="79" column="35" selection-start-line="79" selection-start-column="35" selection-end-line="79" selection-end-column="35" />
-          <folding>
-            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

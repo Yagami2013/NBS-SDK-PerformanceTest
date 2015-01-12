@@ -49,11 +49,7 @@ function sortData(key) {
     var mid = 0;
     var length = key.length
 
-    for (var i = 0; i < length; i++) {
-        avg += key[i];
-    }
-    avg = avg / length;
-
+    //中位数
    var sorted = bubbleSort(key, length);
     if (length % 2 == 0) {
         mid = (sorted[length / 2] + sorted[length / 2 - 1]) / 2;
@@ -61,11 +57,27 @@ function sortData(key) {
         mid = sorted[(length+1) / 2-1];
     }
 
-    var sum = 0;
+    //去掉离散值,求均值
+    var multiple = 50;
+    var deleteCount = 0;
+    var deletedArray = [];
     for (var i = 0; i < length; i++) {
-        sum += (key[i] - avg) * (key[i] - avg);
+        if((key[i]/mid)>multiple){
+            deleteCount++;
+        }else{
+            deletedArray.push(key[i]);
+            avg += key[i];
+        }
     }
-   var sd = Math.sqrt(sum / length);
+    var newLength = length-deleteCount;
+    avg = avg / newLength;
+    console.log(deleteCount+" data deleted");
+    var sum = 0;
+
+    for (var i = 0; i < newLength; i++) {
+        sum += (deletedArray[i] - avg) * (deletedArray[i] - avg);
+    }
+   var sd = Math.sqrt(sum / newLength);
 
     var decimalLength = 2;
     return [avg.toFixed(decimalLength), sd.toFixed(decimalLength), mid.toFixed(decimalLength)];
