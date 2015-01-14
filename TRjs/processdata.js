@@ -9,12 +9,24 @@ function getSrcData(data) {
         var cpu = Array();
         var memory = Array();
         var duration = Array();
+        var hasMem = true;
         for (var i = 0; i < length; i++) {
             cpu[i] = parseFloat(data[i]['Cpu']);
-            memory[i] = parseFloat(data[i]['Mem']) / 1000000;
+            if(data[i]['Mem'] == null){
+                hasMem = false;
+                memory[i] = 0;
+            }else{
+                memory[i] = parseFloat(data[i]['Mem']) / 1000000;
+            }
+
             duration[i] = parseFloat(data[i]['Duration']);
         }
-        return [cpu, memory, duration]
+        if(!hasMem){
+            alert("no Mem data in the source file!");
+            return;
+        }else{
+            return [cpu, memory, duration]
+        }
     }
 
 
