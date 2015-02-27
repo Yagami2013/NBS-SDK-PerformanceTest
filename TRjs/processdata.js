@@ -18,7 +18,6 @@ function getSrcData(data) {
             }else{
                 memory[i] = parseFloat(data[i]['Mem']) / 1000000;
             }
-
             duration[i] = parseFloat(data[i]['Duration']);
         }
         if(!hasMem){
@@ -34,11 +33,16 @@ function getSrcData(data) {
 
 function getMathData(data) {
     var mathData = Array();
-    for (var i = 0; i < data.length; i++) {
-        mathData = mathData.concat(sortData(data[i]));
+    if(data == undefined){
+        mathData = [0,0,0,0,0,0,0,0,0];
+    }else{
+        for (var i = 0; i < data.length; i++) {
+            mathData = mathData.concat(sortData(data[i]));
+        }
     }
     return mathData;
 }
+
 function bubbleSort(arr,length) {
     var i = length, j;
     var tempExchangVal;
@@ -197,6 +201,8 @@ function displayData2(data0, data1, data2, id_cpu, id_mem, id_duration) {
     var durations0 = countMem2(data0[2]);
     var durations1 = countMem2(data1[2]);
     var durations2 = countMem2(data2[2]);
+
+
 
     var durSet = [
         {label: label0, data: durations0, color: color0},

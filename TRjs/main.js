@@ -21,18 +21,20 @@ function start(path, platform, tableId,table2Id, classname, versions, ids) {
 
     }
 
+
     d3.csv(srcFile[0], function (error, data) {
         if (error) {
-            console.log(error);
+            console.log("source file "+srcFile[0]+" open failed");
         }
         else {
             srcData[0] = getSrcData(data);
+            console.log(srcData[0]);
         }
         flag[0] = true;
     });
     d3.csv(srcFile[1], function (error, data) {
         if (error) {
-            console.log(error);
+            console.log("source file "+srcFile[1]+" open failed");
         }
         else {
             srcData[1] = getSrcData(data);
@@ -41,7 +43,7 @@ function start(path, platform, tableId,table2Id, classname, versions, ids) {
     });
     d3.csv(srcFile[2], function (error, data) {
         if (error) {
-            console.log(error);
+            console.log("source file "+srcFile[2]+" open failed");
         }
         else {
             srcData[2] = getSrcData(data);
