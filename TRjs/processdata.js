@@ -1,4 +1,34 @@
 var stepCount = 100;
+//function getSrcData(data) {
+//    if (data == null) {
+//        console.log("get source data failed!");
+//        return;
+//    }
+//    else {
+//        var length = data.length;
+//        var cpu = Array();
+//        var memory = Array();
+//        var duration = Array();
+//        var hasMem = true;
+//        for (var i = 0; i < length; i++) {
+//            cpu[i] = parseFloat(data[i]['Cpu']);
+//            if(data[i]['Mem'] == null){
+//                hasMem = false;
+//                memory[i] = 0;
+//            }else{
+//                memory[i] = parseFloat(data[i]['Mem']) / 1000000;
+//            }
+//            duration[i] = parseFloat(data[i]['Duration']);
+//        }
+//        if(!hasMem){
+//            alert("no Mem data in the source file!");
+//            return;
+//        }else{
+//            return [cpu, memory, duration]
+//        }
+//    }
+//}
+
 function getSrcData(data) {
     if (data == null) {
         console.log("get source data failed!");
@@ -9,26 +39,15 @@ function getSrcData(data) {
         var cpu = Array();
         var memory = Array();
         var duration = Array();
-        var hasMem = true;
         for (var i = 0; i < length; i++) {
             cpu[i] = parseFloat(data[i]['Cpu']);
-            if(data[i]['Mem'] == null){
-                hasMem = false;
-                memory[i] = 0;
-            }else{
-                memory[i] = parseFloat(data[i]['Mem']) / 1000000;
-            }
+            memory[i] = parseFloat(data[i]['Mem']) / 1000000;
             duration[i] = parseFloat(data[i]['Duration']);
+
         }
-        if(!hasMem){
-            alert("no Mem data in the source file!");
-            return;
-        }else{
-            return [cpu, memory, duration]
-        }
+//        console.log("@@ "+duration);
+        return [cpu, memory, duration]
     }
-
-
 }
 
 function getMathData(data) {

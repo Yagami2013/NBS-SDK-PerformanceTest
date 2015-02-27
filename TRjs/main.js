@@ -8,13 +8,14 @@ function start(path, platform, tableId,table2Id, classname, versions, ids) {
     //var versions =3;
     //var classname = "URLConnection";
     var flag = Array();
-    var srcData = Array();
+    var srcData_noSDK = [[0], [0], [0]];
+    var srcData_SDK1 = [[0], [0], [0]];
+    var srcData_SDK2 = [[0], [0], [0]];
     var srcFile = Array();
 
     for (var i = 0; i < versions; i++) {
 
         flag[i] = false;
-        srcData[i] = [[0], [0], [0]];
         var dataPath = String.format("/data/{0}/{1}/{2}_{3}.csv", path, platform, classname, i);
         srcFile[i] = dataPath;
         //srcFile[i] = "/data/"+platform +"/"+ classname + "_" + i + ".csv";
@@ -27,8 +28,8 @@ function start(path, platform, tableId,table2Id, classname, versions, ids) {
             console.log("source file "+srcFile[0]+" open failed");
         }
         else {
-            srcData[0] = getSrcData(data);
-            console.log(srcData[0]);
+            srcData_noSDK = getSrcData(data);
+            console.log(srcData_noSDK[2]);
         }
         flag[0] = true;
     });
@@ -37,7 +38,7 @@ function start(path, platform, tableId,table2Id, classname, versions, ids) {
             console.log("source file "+srcFile[1]+" open failed");
         }
         else {
-            srcData[1] = getSrcData(data);
+            srcData_SDK1 = getSrcData(data);
         }
         flag[1] = true;
     });
@@ -46,7 +47,7 @@ function start(path, platform, tableId,table2Id, classname, versions, ids) {
             console.log("source file "+srcFile[2]+" open failed");
         }
         else {
-            srcData[2] = getSrcData(data);
+            srcData_SDK2 = getSrcData(data);
         }
         flag[2] = true;
     });
@@ -57,8 +58,9 @@ function start(path, platform, tableId,table2Id, classname, versions, ids) {
         if (flag[0] && flag[1] && flag[2]) {
 
             isFinished2 = window.clearInterval(isFinished2);
-            fillTable(classname,versions, tableId,table2Id, [getMathData(srcData[0]), getMathData(srcData[1]), getMathData(srcData[2])]);
-            displayData2(srcData[0], srcData[1], srcData[2], ids[0], ids[1], ids[2]);
+            displayData2(srcData_noSDK, srcData_SDK1, srcData_SDK2, ids[0], ids[1], ids[2]);
+            fillTable(classname,versions, tableId,table2Id, [getMathData(srcData_noSDK), getMathData(srcData_SDK1), getMathData(srcData_SDK2)]);
+
         }
     }
 }
