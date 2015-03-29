@@ -58,13 +58,18 @@
                     该系统仅用于听云APP Android和IOS SDK性能测试，报告以网页形式展示，支持Firefox、chrome和Safari。
                     点击下方列表中的链接，查看性能报告。第一列为报告创建的时间，第二列为当次测试的build号，每次build可能包含1.0版本和2.0版本，也可能仅有其中一个版本，
                     为保持报告格式一致，如果当次build仅包含1.0版本时，显示的2.0版本为上次build的数据。如某个数据文件不存在，图表中数据显示为0。
-
                 </p>
+                <!--测试报告的添加：-->
+                <!--1.在指定目录下创建文件夹，文件夹命名规则：创建日期+版本号。如20141206Build1.0.13表示2014年12月6日测试，版本号为1.0.13；-->
+                <!--20150108Build1.0.18-2.0.9表示2015年1月8号测试，测试版本包含SDK1.0.18和2.0.9；-->
+                <!--2.测试文件命名规则：测试类_版本标志，如HttpClient_0表示测试类HttpClient，_0表示未嵌码，_1表示嵌码1.0版本，_2表示嵌码2.0；-->
+                <!--3.测试数据格式：以.csv文件保存测试数据，包含头行，如Cpu、Mem、Duration，首字母大写。-->
             </div>
             <table id="testtable">
                 <thead>
                 <tr>
                     <th style=" align-content: center;">日期</th>
+                    <th align='center'>版本号</th>
                     <th align='center'>版本号</th>
                     <th>IOS</th>
                     <th>Android</th>
@@ -72,15 +77,38 @@
                 </thead>
                 <tr>
                     <td>20141212</td>
-                    <td>Build2222</td>
-                    <td><a href="ios.html?v=20141212Build2222">IOS</a></td>
-                    <td><a href="android.html?v=20141212Build2222">Android</a></td>
+                    <td>1.0.13</td>
+                    <td>2.0.7</td>
+                    <td><a href="ios.html?v=20141212Build1.0.13-2.0.7">IOS</a></td>
+                    <td><a href="android.html?v=20141212Build1.0.13-2.0.7">Android</a></td>
                 </tr>
                 <tr>
-                    <td>20150107</td>
-                    <td>Build2234</td>
-                    <td><a href="ios.html?v=20150107Build2234">IOS</a></td>
-                    <td><a href="android.html?v=20150107Build2234">Android</a></td>
+                    <td>20150108</td>
+                    <td>1.0.16</td>
+                    <td>2.0.9</td>
+                    <td><a href="ios.html?v=20150108Build10162009">IOS</a></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>20150112</td>
+                    <td>1.2.4</td>
+                    <td>2.1.0</td>
+                    <td></td>
+                    <td><a href="android.html?v=20150112Build1.2.4-2.1.0">Android</a></td>
+                </tr>
+                <tr>
+                    <td>20150211</td>
+                    <td></td>
+                    <td>2.1.0</td>
+                    <td><a href="ios.html?v=20150211Build2.1.0">IOS</a></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>20150211</td>
+                    <td></td>
+                    <td>2.2.0</td>
+                    <td></td>
+                    <td><a href="android.html?v=20150211Build2.2.0">Android</a></td>
                 </tr>
             </table>
 
