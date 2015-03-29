@@ -1,34 +1,4 @@
 var stepCount = 100;
-//function getSrcData(data) {
-//    if (data == null) {
-//        console.log("get source data failed!");
-//        return;
-//    }
-//    else {
-//        var length = data.length;
-//        var cpu = Array();
-//        var memory = Array();
-//        var duration = Array();
-//        var hasMem = true;
-//        for (var i = 0; i < length; i++) {
-//            cpu[i] = parseFloat(data[i]['Cpu']);
-//            if(data[i]['Mem'] == null){
-//                hasMem = false;
-//                memory[i] = 0;
-//            }else{
-//                memory[i] = parseFloat(data[i]['Mem']) / 1000000;
-//            }
-//            duration[i] = parseFloat(data[i]['Duration']);
-//        }
-//        if(!hasMem){
-//            alert("no Mem data in the source file!");
-//            return;
-//        }else{
-//            return [cpu, memory, duration]
-//        }
-//    }
-//}
-
 function getSrcData(data) {
     if (data == null) {
         console.log("get source data failed!");
@@ -43,25 +13,20 @@ function getSrcData(data) {
             cpu[i] = parseFloat(data[i]['Cpu']);
             memory[i] = parseFloat(data[i]['Mem']) / 1000000;
             duration[i] = parseFloat(data[i]['Duration']);
-
         }
-//        console.log("@@ "+duration);
         return [cpu, memory, duration]
     }
+
+
 }
 
-function getMathData(data) {
+function concatMathData(data) {
     var mathData = Array();
-    if(data == undefined){
-        mathData = [0,0,0,0,0,0,0,0,0];
-    }else{
-        for (var i = 0; i < data.length; i++) {
-            mathData = mathData.concat(sortData(data[i]));
-        }
+    for (var i = 0; i < data.length; i++) {
+        mathData = mathData.concat(getMathData(data[i]));
     }
     return mathData;
 }
-
 function bubbleSort(arr,length) {
     var i = length, j;
     var tempExchangVal;
@@ -79,7 +44,7 @@ function bubbleSort(arr,length) {
 }
 
 
-function sortData(key) {
+function getMathData(key) {
     var avg = 0;
     var mid = 0;
     var length = key.length
@@ -142,7 +107,7 @@ function countMem2(mem) {
     var mem_stepCount = window.stepCount;
     var mem_result = Array(); //统计Memory使用的频率;
     var mem_stepSize = mem.length / mem_stepCount;
-    for (var i = 0; i < mem_stepCount+1; i++) {
+    for (var i = 0; i < mem_stepCount; i++) {
         mem_result[i] = 0; //初始所有数据为 0;
     }
     for (var i = 0; i < mem.length; i++) {
@@ -171,7 +136,7 @@ function countMem(mem) {
     var mem_stepCount = window.stepCount;
     var mem_result = Array(); //统计Memory使用的频率;
     var mem_stepSize = mem.length / mem_stepCount;
-    for (var i = 0; i < mem_stepCount+1; i++) {
+    for (var i = 0; i < mem_stepCount; i++) {
         mem_result[i] = 0; //初始所有数据为 0;
     }
     for (var i = 0; i < mem.length; i++) {
@@ -200,7 +165,6 @@ function displayData2(data0, data1, data2, id_cpu, id_mem, id_duration) {
     var resultdata1 = countCpu(data1[0]);
     var resultdata2 = countCpu(data2[0]);
 
-
     var cpuSet = [
         {label: label0, data: resultdata0, color: color0},
         {label: label1, data: resultdata1, color: color1},
@@ -221,8 +185,6 @@ function displayData2(data0, data1, data2, id_cpu, id_mem, id_duration) {
     var durations0 = countMem2(data0[2]);
     var durations1 = countMem2(data1[2]);
     var durations2 = countMem2(data2[2]);
-
-
 
     var durSet = [
         {label: label0, data: durations0, color: color0},
@@ -303,19 +265,20 @@ function countCpu(data) {
     var stepCount = Math.ceil(100 / stepSize); //向上取整;
     var result = Array(); //统计CPU使用%比的频率;
 
-    for (var i = 0; i < stepCount+1; i++) {
+    for (var i = 0; i < stepCount; i++) {
         result[i] = 0; //初始所有数据为 0;
 
     }
+
 
     for (var i = 0; i < data.length; i++) {
         var cpu = data[i];
         var steps = Math.ceil(cpu / stepSize);
         result[steps]++;
+
     }
 
     var myd = Array();
-
     for (var i = 0; i < result.length; i++) {
         myd[i] = [i * stepSize, result[i]]; //转换成 x,y的格式;
     }
