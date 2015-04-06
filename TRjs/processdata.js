@@ -1,4 +1,4 @@
-var stepCount = 100;
+var stepCount = 10;
 //function getSrcData(data) {
 //    if (data == null) {
 //        console.log("get source data failed!");
@@ -52,9 +52,9 @@ function getSrcData(data) {
 
 function getMathData(data) {
     var mathData = Array();
-    if(data == undefined){
-        mathData = [0,0,0,0,0,0,0,0,0];
-    }else{
+    if (data == undefined) {
+        mathData = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    } else {
         for (var i = 0; i < data.length; i++) {
             mathData = mathData.concat(sortData(data[i]));
         }
@@ -62,7 +62,7 @@ function getMathData(data) {
     return mathData;
 }
 
-function bubbleSort(arr,length) {
+function bubbleSort(arr, length) {
     var i = length, j;
     var tempExchangVal;
     while (i > 0) {
@@ -85,11 +85,11 @@ function sortData(key) {
     var length = key.length
 
     //中位数
-   var sorted = bubbleSort(key, length);
+    var sorted = bubbleSort(key, length);
     if (length % 2 == 0) {
         mid = (sorted[length / 2] + sorted[length / 2 - 1]) / 2;
     } else {
-        mid = sorted[(length+1) / 2-1];
+        mid = sorted[(length + 1) / 2 - 1];
     }
 
     //去掉离散值,求均值
@@ -97,22 +97,22 @@ function sortData(key) {
     var deleteCount = 0;
     var deletedArray = [];
     for (var i = 0; i < length; i++) {
-        if((key[i]/mid)>multiple){
+        if ((key[i] / mid) > multiple) {
             deleteCount++;
-        }else{
+        } else {
             deletedArray.push(key[i]);
             avg += key[i];
         }
     }
-    var newLength = length-deleteCount;
+    var newLength = length - deleteCount;
     avg = avg / newLength;
-    console.log(deleteCount+" data deleted");
+    console.log(deleteCount + " data deleted");
     var sum = 0;
 
     for (var i = 0; i < newLength; i++) {
         sum += (deletedArray[i] - avg) * (deletedArray[i] - avg);
     }
-   var sd = Math.sqrt(sum / newLength);
+    var sd = Math.sqrt(sum / newLength);
 
     var decimalLength = 2;
     return [avg.toFixed(decimalLength), sd.toFixed(decimalLength), mid.toFixed(decimalLength)];
@@ -138,11 +138,37 @@ function cloneObject(obj) {
     o.valueOf = obj.valueOf;
     return o;
 }
+
+function countCpu(data) {
+    var cpu_stepCount = window.stepCount;
+    var stepSize = 100 / cpu_stepCount;
+    //var stepCount = Math.ceil(100 / stepSize); //向上取整;
+    var result = Array(); //统计CPU使用%比的频率;
+
+    for (var i = 0; i < cpu_stepCount + 1; i++) {
+        result[i] = 0; //初始所有数据为 0;
+    }
+
+    for (var i = 0; i < data.length; i++) {
+        var cpu = data[i];
+        var steps = Math.floor(cpu / stepSize);
+        result[steps]++;
+    }
+    //result[]
+    var myd = Array();
+
+    for (var i = 0; i < result.length; i++) {
+        myd[i] = [i, result[i]]; //转换成 x,y的格式;
+    }
+
+    return myd;
+}
+
 function countMem2(mem) {
     var mem_stepCount = window.stepCount;
     var mem_result = Array(); //统计Memory使用的频率;
     var mem_stepSize = mem.length / mem_stepCount;
-    for (var i = 0; i < mem_stepCount+1; i++) {
+    for (var i = 0; i < mem_stepCount + 1; i++) {
         mem_result[i] = 0; //初始所有数据为 0;
     }
     for (var i = 0; i < mem.length; i++) {
@@ -171,7 +197,7 @@ function countMem(mem) {
     var mem_stepCount = window.stepCount;
     var mem_result = Array(); //统计Memory使用的频率;
     var mem_stepSize = mem.length / mem_stepCount;
-    for (var i = 0; i < mem_stepCount+1; i++) {
+    for (var i = 0; i < mem_stepCount + 1; i++) {
         mem_result[i] = 0; //初始所有数据为 0;
     }
     for (var i = 0; i < mem.length; i++) {
@@ -223,7 +249,6 @@ function displayData2(data0, data1, data2, id_cpu, id_mem, id_duration) {
     var durations2 = countMem2(data2[2]);
 
 
-
     var durSet = [
         {label: label0, data: durations0, color: color0},
         {label: label1, data: durations1, color: color1},
@@ -231,7 +256,8 @@ function displayData2(data0, data1, data2, id_cpu, id_mem, id_duration) {
     ];
 
     var series = {
-        lines: {
+        //lines: {show: true, fill: true},
+        bars: {
             show: true
         },
         points: {
@@ -289,38 +315,11 @@ function displayData2(data0, data1, data2, id_cpu, id_mem, id_duration) {
     options3.yaxis.axisLabel = "响应时间(ms)";
 
     $.plot($("#" + id_cpu), cpuSet, options1);
-    $("#" + id_cpu).UseTooltip("<strong>{0}</strong><br> <strong> CPU使用率{1}% : 共计{2}次</strong>");
+    $("#" + id_cpu).CpuUseTooltip("<strong>{0}</strong><br> <strong> CPU使用率{1}%~{2}% : 共计{3}次</strong>");
     $.plot($("#" + id_mem), memSet, options2);
     $("#" + id_mem).UseTooltip("<strong>{0}</strong><br> <strong> 内存第{1}次统计 :平均使用{2}MB</strong>", true, 2);
     $.plot($("#" + id_duration), durSet, options3);
     $("#" + id_duration).UseTooltip("<strong>{0}</strong><br> <strong> 响应时间第{1}次统计 :平均使用{2}毫秒</strong>", true, 0);
-}
-
-
-function countCpu(data) {
-
-    var stepSize = 1;
-    var stepCount = Math.ceil(100 / stepSize); //向上取整;
-    var result = Array(); //统计CPU使用%比的频率;
-
-    for (var i = 0; i < stepCount+1; i++) {
-        result[i] = 0; //初始所有数据为 0;
-
-    }
-
-    for (var i = 0; i < data.length; i++) {
-        var cpu = data[i];
-        var steps = Math.ceil(cpu / stepSize);
-        result[steps]++;
-    }
-
-    var myd = Array();
-
-    for (var i = 0; i < result.length; i++) {
-        myd[i] = [i * stepSize, result[i]]; //转换成 x,y的格式;
-    }
-
-    return myd;
 }
 
 function showTooltip(x, y, color, contents) {
@@ -350,7 +349,35 @@ String.format = function () {
     return str;
 }
 
+$.fn.CpuUseTooltip = function (htmlFormat, fixYValue, fixLength) {
+    $(this).bind("plothover", function (event, pos, item) {
+        if (item) {
+            if ((previousLabel != item.series.label) || (previousPoint != item.dataIndex)) {
+                previousPoint = item.dataIndex;
+                previousLabel = item.series.label;
+                $("#tooltip").remove();
+                var x = item.datapoint[0];
+                var y = item.datapoint[1];
+                var color = item.series.color;
+                if (fixYValue) {
+                    y = y.toFixed(parseInt(fixLength))
+                }
+                var tipHtml = String.format(htmlFormat, item.series.label, x * 10, (x + 1) * 10, y); //cpu使用80 %: 65次
+                showTooltip(item.pageX,
+                    item.pageY,
+                    color,
+                    tipHtml);
+            }
+        } else {
+            $("#tooltip").remove();
+            previousPoint = null;
+        }
+    });
+};
+
 var previousPoint = null, previousLabel = null;
+
+
 $.fn.UseTooltip = function (htmlFormat, fixYValue, fixLength) {
     $(this).bind("plothover", function (event, pos, item) {
         if (item) {

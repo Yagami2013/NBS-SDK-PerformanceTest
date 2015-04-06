@@ -4,7 +4,7 @@ function getUrlParam(name) {
     if (r != null) return unescape(r[2]);
     return null; //返回参数值
 }
-function start(path, platform, tableId,table2Id, classname, versions, ids) {
+function start(path, platform, tableId, table2Id, classname, versions, ids) {
     //var versions =3;
     //var classname = "URLConnection";
     var flag = Array();
@@ -25,7 +25,7 @@ function start(path, platform, tableId,table2Id, classname, versions, ids) {
 
     d3.csv(srcFile[0], function (error, data) {
         if (error) {
-            console.log("source file "+srcFile[0]+" open failed");
+            console.log("source file " + srcFile[0] + " open failed");
         }
         else {
             srcData_noSDK = getSrcData(data);
@@ -35,7 +35,7 @@ function start(path, platform, tableId,table2Id, classname, versions, ids) {
     });
     d3.csv(srcFile[1], function (error, data) {
         if (error) {
-            console.log("source file "+srcFile[1]+" open failed");
+            console.log("source file " + srcFile[1] + " open failed");
         }
         else {
             srcData_SDK1 = getSrcData(data);
@@ -44,7 +44,7 @@ function start(path, platform, tableId,table2Id, classname, versions, ids) {
     });
     d3.csv(srcFile[2], function (error, data) {
         if (error) {
-            console.log("source file "+srcFile[2]+" open failed");
+            console.log("source file " + srcFile[2] + " open failed");
         }
         else {
             srcData_SDK2 = getSrcData(data);
@@ -59,7 +59,7 @@ function start(path, platform, tableId,table2Id, classname, versions, ids) {
 
             isFinished2 = window.clearInterval(isFinished2);
             displayData2(srcData_noSDK, srcData_SDK1, srcData_SDK2, ids[0], ids[1], ids[2]);
-            fillTable(classname,versions, tableId,table2Id, [getMathData(srcData_noSDK), getMathData(srcData_SDK1), getMathData(srcData_SDK2)]);
+            fillTable(classname, versions, tableId, table2Id, [getMathData(srcData_noSDK), getMathData(srcData_SDK1), getMathData(srcData_SDK2)]);
 
         }
     }
