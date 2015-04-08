@@ -1,34 +1,4 @@
 var stepCount = 10;
-//function getSrcData(data) {
-//    if (data == null) {
-//        console.log("get source data failed!");
-//        return;
-//    }
-//    else {
-//        var length = data.length;
-//        var cpu = Array();
-//        var memory = Array();
-//        var duration = Array();
-//        var hasMem = true;
-//        for (var i = 0; i < length; i++) {
-//            cpu[i] = parseFloat(data[i]['Cpu']);
-//            if(data[i]['Mem'] == null){
-//                hasMem = false;
-//                memory[i] = 0;
-//            }else{
-//                memory[i] = parseFloat(data[i]['Mem']) / 1000000;
-//            }
-//            duration[i] = parseFloat(data[i]['Duration']);
-//        }
-//        if(!hasMem){
-//            alert("no Mem data in the source file!");
-//            return;
-//        }else{
-//            return [cpu, memory, duration]
-//        }
-//    }
-//}
-
 function getSrcData(data) {
     if (data == null) {
         console.log("get source data failed!");
@@ -193,6 +163,28 @@ function countDuration(duration) {
     return result;
 }
 
+function getHistogram(max,data){
+    var mstepCount = window.stepCount;
+    var result = Array(); //统计Memory使用的频率;
+    var stepSize = max/mstepCount;
+    for (var i = 0; i < mstepCount + 1; i++) {
+        result[i] = 0; //初始所有数据为 0;
+    }
+    for (var i = 0; i < data.length; i++) {
+        var val = data[i];
+        if(val>max){
+            console.log("丢弃离散值%s"%val);
+        }
+        var steps = Math.floor(val / stepSize);
+        result[steps]++;
+    }
+    var myd = Array();
+
+    for (var i = 0; i < result.length; i++) {
+        myd[i] = [i, result[i]]; //转换成 x,y的格式;
+    }
+    return myd;
+}
 function countMem(mem) {
     var mem_stepCount = window.stepCount;
     var mem_result = Array(); //统计Memory使用的频率;
@@ -214,6 +206,9 @@ function countMem(mem) {
 }
 
 function displayData2(data0, data1, data2, id_cpu, id_mem, id_duration) {
+    var max_mem = 50;//假定内存使用不超过50MB
+    var max_dur = 100;//假定响应时间最大不超过100ms
+
     var label0 = "noSDK";
     var label1 = "SDK1.0";
     var label2 = "SDK2.0";
@@ -233,9 +228,9 @@ function displayData2(data0, data1, data2, id_cpu, id_mem, id_duration) {
         {label: label2, data: resultdata2, color: color2}
     ];
 
-    var memdata0 = countMem(data0[1]);
-    var memdata1 = countMem(data1[1]);
-    var memdata2 = countMem(data2[1]);
+    var memdata0 = getHistogram(max_mem,data0[1]);
+    var memdata1 = getHistogram(max_mem,data1[1]);
+    var memdata2 = getHistogram(max_mem,data2[1]);
 
     var memSet = [
         {label: label0, data: memdata0, color: color0},
@@ -244,9 +239,9 @@ function displayData2(data0, data1, data2, id_cpu, id_mem, id_duration) {
     ];
 
 
-    var durations0 = countMem2(data0[2]);
-    var durations1 = countMem2(data1[2]);
-    var durations2 = countMem2(data2[2]);
+    var durations0 = getHistogram(max_dur,data0[2]);
+    var durations1 = getHistogram(max_dur,data1[2]);
+    var durations2 = getHistogram(max_dur,data2[2]);
 
 
     var durSet = [
@@ -317,9 +312,9 @@ function displayData2(data0, data1, data2, id_cpu, id_mem, id_duration) {
     $.plot($("#" + id_cpu), cpuSet, options1);
     $("#" + id_cpu).CpuUseTooltip("<strong>{0}</strong><br> <strong> CPU使用率{1}%~{2}% : 共计{3}次</strong>");
     $.plot($("#" + id_mem), memSet, options2);
-    $("#" + id_mem).UseTooltip("<strong>{0}</strong><br> <strong> 内存第{1}次统计 :平均使用{2}MB</strong>", true, 2);
+    $("#" + id_mem).CpuUseTooltip("<strong>{0}</strong><br> <strong> 内存使用{1}M~{2}M : 共计{3}次</strong>");
     $.plot($("#" + id_duration), durSet, options3);
-    $("#" + id_duration).UseTooltip("<strong>{0}</strong><br> <strong> 响应时间第{1}次统计 :平均使用{2}毫秒</strong>", true, 0);
+    $("#" + id_duration).CpuUseTooltip("<strong>{0}</strong><br> <strong> 响应时间{1}ms~{2}ms : 共计{3}次</strong>");
 }
 
 function showTooltip(x, y, color, contents) {
