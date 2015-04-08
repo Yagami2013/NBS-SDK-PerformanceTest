@@ -1,4 +1,4 @@
-var stepCount = 10;
+var stepCount = 50;
 function getSrcData(data) {
     if (data == null) {
         console.log("get source data failed!");
@@ -173,10 +173,13 @@ function getHistogram(max,data){
     for (var i = 0; i < data.length; i++) {
         var val = data[i];
         if(val>max){
-            console.log("丢弃离散值%s"%val);
+            console.log(val);
+            //console.log("丢弃离散值%s"%val);
+        }else{
+            var steps = Math.floor(val / stepSize);
+            result[steps]++;
         }
-        var steps = Math.floor(val / stepSize);
-        result[steps]++;
+
     }
     var myd = Array();
 
@@ -357,7 +360,7 @@ $.fn.CpuUseTooltip = function (htmlFormat, fixYValue, fixLength) {
                 if (fixYValue) {
                     y = y.toFixed(parseInt(fixLength))
                 }
-                var tipHtml = String.format(htmlFormat, item.series.label, x * 10, (x + 1) * 10, y); //cpu使用80 %: 65次
+                var tipHtml = String.format(htmlFormat, item.series.label, x, (x + 1), y); //cpu使用80 %: 65次
                 showTooltip(item.pageX,
                     item.pageY,
                     color,
