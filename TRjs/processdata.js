@@ -1,4 +1,5 @@
-var stepCount = 50;
+var stepCount = 10;
+var stepSize = 5;
 function getSrcData(data) {
     if (data == null) {
         console.log("get source data failed!");
@@ -164,10 +165,10 @@ function countDuration(duration) {
 }
 
 function getHistogram(max,data){
-    var mstepCount = window.stepCount;
+    var stepSize = window.stepSize;
     var result = Array(); //统计Memory使用的频率;
-    var stepSize = max/mstepCount;
-    for (var i = 0; i < mstepCount + 1; i++) {
+    var stepCount = max/stepSize;
+    for (var i = 0; i < stepCount + 1; i++) {
         result[i] = 0; //初始所有数据为 0;
     }
     for (var i = 0; i < data.length; i++) {
@@ -184,7 +185,7 @@ function getHistogram(max,data){
     var myd = Array();
 
     for (var i = 0; i < result.length; i++) {
-        myd[i] = [i, result[i]]; //转换成 x,y的格式;
+        myd[i] = [i*stepSize, result[i]]; //转换成 x,y的格式;
     }
     return myd;
 }
@@ -209,8 +210,9 @@ function countMem(mem) {
 }
 
 function displayData2(data0, data1, data2, id_cpu, id_mem, id_duration) {
-    var max_mem = 50;//假定内存使用不超过50MB
+    var max_mem = 100;//假定内存使用不超过50MB
     var max_dur = 100;//假定响应时间最大不超过100ms
+    var max_cpu = 100;
 
     var label0 = "noSDK";
     var label1 = "SDK1.0";
@@ -220,9 +222,9 @@ function displayData2(data0, data1, data2, id_cpu, id_mem, id_duration) {
     var color1 = "#7D0096";
     var color2 = "#DE000F";
 
-    var resultdata0 = countCpu(data0[0]);
-    var resultdata1 = countCpu(data1[0]);
-    var resultdata2 = countCpu(data2[0]);
+    var resultdata0 = getHistogram(max_cpu,data0[0]);
+    var resultdata1 = getHistogram(max_cpu,data1[0]);
+    var resultdata2 = getHistogram(max_cpu,data2[0]);
 
 
     var cpuSet = [
@@ -256,7 +258,8 @@ function displayData2(data0, data1, data2, id_cpu, id_mem, id_duration) {
     var series = {
         //lines: {show: true, fill: true},
         bars: {
-            show: true
+            show: true,
+            barWidth: stepSize
         },
         points: {
             radius: 2,
@@ -305,12 +308,12 @@ function displayData2(data0, data1, data2, id_cpu, id_mem, id_duration) {
         colors: colors
     };
     var options2 = cloneObject(options1);
-    options2.xaxis.axisLabel = String.format("采样时间(按照顺序均分为{0}等份)", window.stepCount);
-    options2.yaxis.axisLabel = "内存使用(MB)";
+    options2.xaxis.axisLabel = String.format("内存使用(MB");
+    options2.yaxis.axisLabel = "出现次数";
 
     var options3 = cloneObject(options1);
-    options3.xaxis.axisLabel = String.format("采样时间(按照顺序均分为{0}等份)", window.stepCount);
-    options3.yaxis.axisLabel = "响应时间(ms)";
+    options3.xaxis.axisLabel = String.format("响应时间(ms)");
+    options3.yaxis.axisLabel = "出现次数";
 
     $.plot($("#" + id_cpu), cpuSet, options1);
     $("#" + id_cpu).CpuUseTooltip("<strong>{0}</strong><br> <strong> CPU使用率{1}%~{2}% : 共计{3}次</strong>");
@@ -360,7 +363,7 @@ $.fn.CpuUseTooltip = function (htmlFormat, fixYValue, fixLength) {
                 if (fixYValue) {
                     y = y.toFixed(parseInt(fixLength))
                 }
-                var tipHtml = String.format(htmlFormat, item.series.label, x, (x + 1), y); //cpu使用80 %: 65次
+                var tipHtml = String.format(htmlFormat, item.series.label, x, (x + stepSize), y); //cpu使用80 %: 65次
                 showTooltip(item.pageX,
                     item.pageY,
                     color,
