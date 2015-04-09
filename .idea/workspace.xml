@@ -7,7 +7,9 @@
       <change type="DELETED" beforePath="D:\TestReport\data\20150211Build2.1.0\ios\ASIHttpRequest_2.csv" afterPath="" />
       <change type="DELETED" beforePath="D:\TestReport\data\20150211Build2.1.0\ios\NSURLConnection_0.csv" afterPath="" />
       <change type="DELETED" beforePath="D:\TestReport\data\20150211Build2.1.0\ios\NSURLConnection_2.csv" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TRjs/processdata.js" afterPath="$PROJECT_DIR$/TRjs/processdata.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/20150409Build2.2.3/Android/HttpClient_2.csv" afterPath="$PROJECT_DIR$/data/20150409Build2.2.3/Android/HttpClient_2.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/20150409Build2.2.3/Android/UrlConnection_2.csv" afterPath="$PROJECT_DIR$/data/20150409Build2.2.3/Android/UrlConnection_2.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TestReport.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,8 +60,8 @@
       <file leaf-file-name="processdata.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TRjs/processdata.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4739069" vertical-offset="3914" max-vertical-offset="10325">
-              <caret line="170" column="24" selection-start-line="170" selection-start-column="24" selection-end-line="170" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.38700947" vertical-offset="5039" max-vertical-offset="10325">
+              <caret line="213" column="19" selection-start-line="213" selection-start-column="19" selection-end-line="213" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -170,6 +172,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -204,7 +207,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -560,11 +562,12 @@
       <workItem from="1428481426254" duration="830000" />
       <workItem from="1428485907073" duration="880000" />
       <workItem from="1428565740318" duration="1727000" />
+      <workItem from="1428572507908" duration="806000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="268267000" />
+    <option name="totallyTimeSpent" value="269073000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="0" />
@@ -1093,8 +1096,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TRjs/processdata.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4739069" vertical-offset="3914" max-vertical-offset="10325">
-          <caret line="170" column="24" selection-start-line="170" selection-start-column="24" selection-end-line="170" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.38700947" vertical-offset="5039" max-vertical-offset="10325">
+          <caret line="213" column="19" selection-start-line="213" selection-start-column="19" selection-end-line="213" selection-end-column="19" />
           <folding />
         </state>
       </provider>
