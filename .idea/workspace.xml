@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f63b8508-89a9-4037-869a-35e0e6143da7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index.html.bak" afterPath="$PROJECT_DIR$/Index.html.bak" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index.html" afterPath="$PROJECT_DIR$/Index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TRjs/processdata.js" afterPath="$PROJECT_DIR$/TRjs/processdata.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="f63b8508-89a9-4037-869a-35e0e6143da7" name="Default" comment="" />
     <ignored path="TestReport.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -556,12 +551,12 @@
       <workItem from="1428307830876" duration="4035000" />
       <workItem from="1428477386684" duration="3565000" />
       <workItem from="1428481426254" duration="830000" />
-      <workItem from="1428485907073" duration="283000" />
+      <workItem from="1428485907073" duration="880000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="265943000" />
+    <option name="totallyTimeSpent" value="266540000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="0" />
